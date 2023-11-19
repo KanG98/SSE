@@ -1,11 +1,4 @@
 rootProject.name = 'SSE'
-include 'service'
 include 'service:service-product'
 findProject(':service:service-product')?.name = 'service-product'
-include 'service:food-service'
-findProject(':service:food-service')?.name = 'food-service'
-include 'service:product-service'
-findProject(':service:product-service')?.name = 'product-service'
-include 'service:product-service'
-findProject(':service:product-service')?.name = 'product-service'
 
