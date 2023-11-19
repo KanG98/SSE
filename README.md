@@ -1,3 +1,3 @@
-Safe sx express (安捷达)
+Safe sx express (SSE)
 
 安捷达
