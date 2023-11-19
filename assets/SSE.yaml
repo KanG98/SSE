@@ -1,0 +1,109 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "SSE Endpoints"
+
+host: localhost:8080
+basePath: /v1
+schemes:
+  - http
+
+tags:
+  - name: Products
+    description: Product service endpoints
+paths:
+  /products/show_all:
+    post:
+      tags:
+        - Products
+      summary: "Show all products."
+      description: "Shows all products."
+      responses:
+        200:
+          description: "Successful response"
+          examples:
+            application/json: [
+              {
+                "product_name": "Product A",
+                "description": "Description of Product A",
+                "category": "cd",
+                "brand": "A",
+                "price": 50.00,
+                "stock_quantity": 100,
+                "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
+                "date_added": ISODate("2023-01-01T08:00:00Z")
+              },
+              {
+                "product_name": "Product A II",
+                "description": "Description of Product A II",
+                "category": "Electronics",
+                "brand": "B",
+                "price": 21.00,
+                "stock_quantity": 100,
+                "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
+                "date_added": ISODate("2023-01-01T08:00:00Z")
+              },
+              {
+                "product_name": "Product B",
+                "description": "Description of Product V",
+                "category": "Cd",
+                "brand": "D",
+                "price": 22.00,
+                "stock_quantity": 32,
+                "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
+                "date_added": ISODate("2023-01-01T08:00:00Z")
+              }
+            ]
+        500:
+          description: "Internal server error"
+
+  /products/show_by_name:
+    post:
+      tags:
+        - Products
+      summary: "Show all products with product name."
+      description: "Shows all products that contains requested name."
+      parameters:
+        - name: product
+          in: body
+          required: true
+          schema:
+              type: object
+              required:
+                - product_name
+              properties:
+                product_name:
+                  type: string
+              example:
+                product_name: Product A
+      responses:
+        200:
+          description: "Successful response"
+          examples:
+            application/json: [
+              {
+                "product_name": "Product A",
+                "description": "Description of Product A",
+                "category": "cd",
+                "brand": "A",
+                "price": 50.00,
+                "stock_quantity": 100,
+                "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
+                "date_added": ISODate("2023-01-01T08:00:00Z")
+              },
+              {
+                "product_name": "Product A II",
+                "description": "Description of Product A II",
+                "category": "Electronics",
+                "brand": "B",
+                "price": 21.00,
+                "stock_quantity": 100,
+                "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
+                "date_added": ISODate("2023-01-01T08:00:00Z")
+              }
+            ]
+        500:
+          description: "Internal server error"
+
+
+
