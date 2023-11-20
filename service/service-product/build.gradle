@@ -15,11 +15,16 @@ application {
     mainClass.set("com.kang98.service.serviceproduct.ProductServiceApplication")
 }
 
+springBoot {
+    mainClass = 'com.kang98.service.serviceproduct.ProductServiceApplication'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.apache.httpcomponents:httpclient:4.5.13'
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.30'
@@ -36,8 +41,12 @@ dependencies {
 
 jar {
     enabled = false
+//    manifest {
+//        attributes 'Main-Class': 'ProductServiceApplication'
+//    }
 }
 
 test {
     useJUnitPlatform()
+//    exclude '**/webclient/**'
 }

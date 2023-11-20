@@ -9,12 +9,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ReadProductService {
+public class ReadProductsService {
 
     private final ProductRepository productsRepository;
 
     public List<Product> getAllProducts() {
         return productsRepository.findAll();
     }
-
 }
