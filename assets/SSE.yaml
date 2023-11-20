@@ -57,25 +57,25 @@ paths:
         500:
           description: "Internal server error"
 
-  /products/by_name:
+  /products/by-name:
     post:
       tags:
         - Products
       summary: "Show all products with product name."
       description: "Shows all products that contains requested name."
       parameters:
-        - name: product
+        - name: getProductsRequest
           in: body
           required: true
           schema:
               type: object
               required:
-                - product_name
+                - productName
               properties:
-                product_name:
+                productName:
                   type: string
               example:
-                product_name: Product A
+                productName: Product A
       responses:
         200:
           description: "Successful response"

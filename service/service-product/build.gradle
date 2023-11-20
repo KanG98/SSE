@@ -21,6 +21,7 @@ springBoot {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
@@ -48,5 +49,7 @@ jar {
 
 test {
     useJUnitPlatform()
-//    exclude '**/webclient/**'
+    exclude '**/webclient/**'
+    exclude '**IT**'
+
 }

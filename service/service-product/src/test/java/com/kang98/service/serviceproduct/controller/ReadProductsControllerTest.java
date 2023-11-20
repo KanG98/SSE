@@ -1,36 +1,32 @@
-package com.kang98.service.serviceproduct.service;
+package com.kang98.service.serviceproduct.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kang98.data.dataproduct.entity.Product;
-import com.kang98.data.dataproduct.repository.ProductRepository;
-import com.kang98.service.serviceproduct.controller.ReadProductsController;
-import com.kang98.service.serviceproduct.dto.GetAllProductsResponse;
-import com.kang98.service.serviceproduct.service.helpers.Helpers;
+import com.kang98.service.serviceproduct.config.ProductServiceMockProducts;
+import com.kang98.service.serviceproduct.dto.GetProductsRequest;
+import com.kang98.service.serviceproduct.dto.GetProductsResponse;
+import com.kang98.service.serviceproduct.service.ReadProductsService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 
-import static com.kang98.service.serviceproduct.config.ProductServiceTestConfig.TEST_GET_ALL_PRODUCTS_RESPONSE;
+import static com.kang98.service.serviceproduct.config.ProductServiceTestConfig.TEST_GET_PRODUCTS_REQUEST;
+import static com.kang98.service.serviceproduct.config.ProductServiceTestConfig.TEST_GET_PRODUCTS_RESPONSE;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ReadProductsControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
     @Mock
     private ReadProductsService readProductsService;
 
@@ -39,28 +35,59 @@ public class ReadProductsControllerTest {
 
     @Test
     void getAllProducts_callMethod_expectedReadProductsResponse() throws IOException {
-        InputStream responseJson = this.getClass().getResourceAsStream(TEST_GET_ALL_PRODUCTS_RESPONSE);
-        var getAllProductsResponse = new ObjectMapper().readValue(responseJson, GetAllProductsResponse.class);
+        InputStream responseJson = this.getClass().getResourceAsStream(TEST_GET_PRODUCTS_RESPONSE);
+        var getAllProductsResponse = new ObjectMapper().readValue(responseJson, GetProductsResponse.class);
 
-        Product mockProduct = Product.builder()
-                .id("5f90c393a380afd5cf0bdd1c")
-                .productName("Smartphone X")
-                .description("A high-performance smartphone with advanced features.")
-                .category("Electronics")
-                .brand("TechCo")
-                .price(499.99)
-                .stockQuantity(100)
-                .supplierId("5f90c393a380afd5cf0bdd1e")
-                .dateAdded(Helpers.convertToDate("2023-01-05T09:15:00.000+00:00"))
-                .build();
+        when(readProductsService.getAllProducts()).thenReturn(Arrays.asList(ProductServiceMockProducts.getMockProduct1()));
 
-        when(readProductsService.getAllProducts()).thenReturn(Arrays.asList(mockProduct));
-
-        var actual = GetAllProductsResponse.builder().productList(readProductsService.getAllProducts()).build();
+        var actual = GetProductsResponse.builder().productList(readProductsService.getAllProducts()).build();
 
         assertAll("Get all products",
                 () -> assertEquals(getAllProductsResponse, actual),
                 () -> verify(readProductsService, times(1)).getAllProducts()
+        );
+    }
+
+    @Test
+    void getProductsByName_givenEmptyProductName_expectedAllProducts() throws IOException {
+        GetProductsRequest getProductsRequest = GetProductsRequest.builder().productName("").build();
+        GetProductsResponse getAllProductsResponse = GetProductsResponse.builder().productList(ProductServiceMockProducts.getAllMockProducts()).build();
+
+        when(readProductsService.getProductsByName(getProductsRequest.getProductName())).thenReturn(ProductServiceMockProducts.getAllMockProducts());
+
+        var actual = readProductsController.getProductsByName(getProductsRequest);
+        assertAll("Get products by name given empty product name in request",
+                () -> assertEquals(getAllProductsResponse, actual),
+                () -> verify(readProductsService, times(1)).getProductsByName(getProductsRequest.getProductName())
+        );
+    }
+
+    @Test
+    void getProductsByName_givenProductName_expectedNoProductsList() throws IOException {
+        GetProductsRequest getProductsRequest = GetProductsRequest.builder().productName("does not exist").build();
+
+        when(readProductsService.getProductsByName(getProductsRequest.getProductName())).thenReturn(Arrays.asList());
+
+        var expected = GetProductsResponse.builder().productList(Arrays.asList()).build();
+        var actual = readProductsController.getProductsByName(getProductsRequest);
+        assertAll("Get products by name not exist in db",
+                () -> assertEquals(expected, actual),
+                () -> verify(readProductsService, times(1)).getProductsByName(getProductsRequest.getProductName())
+        );
+    }
+    @Test
+    void getProductsByName_givenProductNameIgnoreCase_expectedAllProducts() throws IOException {
+        InputStream requestJson = this.getClass().getResourceAsStream(TEST_GET_PRODUCTS_REQUEST);
+        var getProductsRequest = new ObjectMapper().readValue(requestJson, GetProductsRequest.class);
+        InputStream responseJson = this.getClass().getResourceAsStream(TEST_GET_PRODUCTS_RESPONSE);
+        var getAllProductsResponse = new ObjectMapper().readValue(responseJson, GetProductsResponse.class);
+
+        when(readProductsService.getProductsByName(getProductsRequest.getProductName())).thenReturn(Arrays.asList(ProductServiceMockProducts.getMockProduct1()));
+
+        var actual = readProductsController.getProductsByName(getProductsRequest);
+        assertAll("Get products by name given ignore case sensitive names",
+                () -> assertEquals(getAllProductsResponse, actual),
+                () -> verify(readProductsService, times(1)).getProductsByName(getProductsRequest.getProductName())
         );
     }
 }
