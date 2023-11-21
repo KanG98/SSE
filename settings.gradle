@@ -6,4 +6,6 @@ include 'data:product'
 findProject(':data:product')?.name = 'product'
 include 'service:service-order'
 findProject(':service:service-order')?.name = 'service-order'
+include 'data:order'
+findProject(':data:order')?.name = 'order'
 

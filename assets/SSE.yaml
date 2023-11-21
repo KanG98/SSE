@@ -9,13 +9,15 @@ schemes:
   - http
 
 tags:
-  - name: Products
+  - name: Product
     description: Product service endpoints
+  - name: Order
+    description: Order service endpoints
 paths:
   /products/all:
     post:
       tags:
-        - Products
+        - Product
       summary: "Show all products."
       description: "Shows all products."
       responses:
@@ -60,7 +62,7 @@ paths:
   /products/by-name:
     post:
       tags:
-        - Products
+        - Product
       summary: "Show all products with product name."
       description: "Shows all products that contains requested name."
       parameters:
@@ -104,6 +106,82 @@ paths:
             ]
         500:
           description: "Internal server error"
+  /orders:
+    post:
+      tags:
+        - Order
+      summary: "Place a new order"
+      description: "Place a new order"
+      parameters:
+        - name: createOrderRequest
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - customerId
+              - orderDate
+              - shippingAddress
+              - totalAmount
+              - paymentMethod
+              - orderStatus
+              - scheduledDelivery
+              - deliveredDate
+              - discounts
+              - taxAmount
+              - notes
+              - products
+            properties:
+              customerId:
+                type: string
+                example: "32049231jf80afd5cf0bdd1e"
+              orderDate:
+                type: string
+                example: "2023-01-01T08:00:00Z"
+              shippingAddress:
+                type: string
+                example: "123 Main St, Cityville"
+              totalAmount:
+                type: float
+                example: 150.00
+              paymentMethod:
+                type: string
+                example: "Credit Card"
+              orderStatus:
+                type: string
+                example: "Pending"
+              deliveredDate:
+                type: string
+                example: "2023-01-02T08:00:00Z"
+              scheduledDelivery:
+                type: string
+                example: "2023-01-02T08:00:00Z"
+              discounts:
+                type: float
+                example: 10.00
+              taxAmount:
+                type: float
+                example: 8.50
+              notes:
+                type: string
+                example: "Express shipping requested"
+              products:
+                type: array
+                example:
+                  - productId: "5f90c393a380afd5cf0bdd1c"
+                    productName: "Product A"
+                    quantity: 2
+                    unitPrice: 50.00
+                  - productId: "5f90c393a380afd5cf0bdd1d"
+                    productName: "Product B"
+                    quantity: 1
+                    unitPrice: 50.00
+      responses:
+        201:
+          description: "Successful response"
+        500:
+          description: "Internal server error"
+
 
 
 
