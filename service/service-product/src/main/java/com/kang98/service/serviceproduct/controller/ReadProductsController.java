@@ -4,7 +4,8 @@ import com.kang98.data.dataproduct.entity.Product;
 import com.kang98.service.serviceproduct.dto.GetProductsRequest;
 import com.kang98.service.serviceproduct.dto.GetProductsResponse;
 import com.kang98.service.serviceproduct.service.ReadProductsService;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class ReadProductsController {
     }
 
     @PostMapping(READ_PRODUCTS_BY_NAME)
-    public GetProductsResponse getProductsByName(@RequestBody @NotNull GetProductsRequest getProductsRequest) {
+    public GetProductsResponse getProductsByName(@RequestBody @Valid GetProductsRequest getProductsRequest) {
         log.info("Get products by name called: productName = " + getProductsRequest.getProductName());
         List<Product> productList;
         try {

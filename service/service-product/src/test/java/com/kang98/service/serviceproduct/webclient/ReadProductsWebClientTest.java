@@ -18,7 +18,7 @@ public class ReadProductsWebClientTest {
     @Test
     public void testProductAllHttpPost_expectedSuccess() throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        String url = "http://localhost:8080/products/all";
+        String url = "http://localhost:8081/products/all";
         HttpPost httpPost = new HttpPost(url);
         HttpResponse response = httpClient.execute(httpPost);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -29,7 +29,7 @@ public class ReadProductsWebClientTest {
     @Test
     public void testProductByNameHttpPost_expectedSuccess() throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        String url = "http://localhost:8080/products/by-name";
+        String url = "http://localhost:8081/products/by-name";
         HttpPost httpPost = new HttpPost(url);
 
         String JSON_STRING = "{ \"productName\": \"smartphone\" }";
@@ -47,7 +47,7 @@ public class ReadProductsWebClientTest {
     @Test
     public void testProductByNameHttpPost_givenNoRequestBody_expectedInvalidRequest() throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        String url = "http://localhost:8080/products/by-name";
+        String url = "http://localhost:8081/products/by-name";
         HttpPost httpPost = new HttpPost(url);
 
         HttpResponse response = httpClient.execute(httpPost);
@@ -59,7 +59,7 @@ public class ReadProductsWebClientTest {
     @Test
     public void testProductByNameHttpPost_givenNoProductName_expectedInvalidRequest() throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        String url = "http://localhost:8080/products/by-name";
+        String url = "http://localhost:8081/products/by-name";
         HttpPost httpPost = new HttpPost(url);
 
         String JSON_STRING = "{}";

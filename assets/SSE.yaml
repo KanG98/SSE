@@ -104,6 +104,17 @@ paths:
                 "date_added": ISODate("2023-01-01T08:00:00Z")
               }
             ]
+        400:
+          description: "Invalid request"
+          examples:
+            application/json:
+              {
+                "type": "about:blank",
+                "title": "Bad Request",
+                "status": 400,
+                "detail": "Invalid request content.",
+                "instance": "/orders"
+              }
         500:
           description: "Internal server error"
   /orders:
@@ -179,9 +190,16 @@ paths:
       responses:
         201:
           description: "Successful response"
+        400:
+          description: "Invalid request"
+          examples:
+            application/json:
+              {
+                "type": "about:blank",
+                "title": "Bad Request",
+                "status": 400,
+                "detail": "Invalid request content.",
+                "instance": "/orders"
+              }
         500:
           description: "Internal server error"
-
-
-
-

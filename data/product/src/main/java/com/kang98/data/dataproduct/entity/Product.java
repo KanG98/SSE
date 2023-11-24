@@ -28,10 +28,10 @@ public class Product {
 
     private String brand;
 
-    private double price;
+    private Float price;
 
     @Field("stock_quantity")
-    private int stockQuantity;
+    private Integer stockQuantity;
 
     @Field("supplier_id")
     private String supplierId;

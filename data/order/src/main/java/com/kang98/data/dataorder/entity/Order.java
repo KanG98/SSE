@@ -31,7 +31,7 @@ public class Order {
     private String shippingAddress;
 
     @Field("total_amount")
-    private double totalAmount;
+    private Float totalAmount;
 
     @Field("payment_method")
     private String paymentMethod;
@@ -45,10 +45,10 @@ public class Order {
     @Field("delivered_date")
     private Date deliveredDate;
 
-    private double discounts;
+    private Float discounts;
 
     @Field("tax_amount")
-    private double taxAmount;
+    private Float taxAmount;
 
     private String notes;
 
