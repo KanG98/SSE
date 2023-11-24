@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class CreateOrdersControllerTest {
     @Mock
     private CreateOrdersService createOrdersService;
 
+    @Mock
+    private ModelMapper modelMapper;
+
     @InjectMocks
     private CreateOrdersController createOrdersController;
 
@@ -38,6 +42,7 @@ public class CreateOrdersControllerTest {
         var createOrdersRequest = new ObjectMapper().readValue(requestJson, CreateOrdersRequest.class);
 
         when(createOrdersService.createOrder(any(Order.class))).thenReturn(Order.builder().build());
+        when(modelMapper.map(createOrdersRequest, Order.class)).thenReturn(Order.builder().build());
 
         assertAll("Create order success",
                 () -> createOrdersController.createOrder(createOrdersRequest),

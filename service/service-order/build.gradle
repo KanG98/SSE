@@ -36,6 +36,9 @@ dependencies {
     // mongodb
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
+    // mapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+
     // other packages
     implementation project(':data:order')
     implementation project(':data:product')
@@ -43,7 +46,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-//    exclude '**/webclient/**'
+    exclude '**/webclient/**'
     exclude '**IT**'
 
 }
