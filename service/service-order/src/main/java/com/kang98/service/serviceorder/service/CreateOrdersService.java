@@ -1,7 +1,7 @@
 package com.kang98.service.serviceorder.service;
 
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataorder.repository.OrderRepository;
+import com.kang98.data.dataorder.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateOrdersService {
 
-    private final OrderRepository orderRepository;
+    private final OrdersRepository ordersRepository;
 
-    public void createOrder(Order order) {
-        orderRepository.save(order);
+    public Order createOrder(Order order) {
+        return ordersRepository.save(order);
     }
 }

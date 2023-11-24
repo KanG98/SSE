@@ -1,7 +1,7 @@
 package com.kang98.service.serviceproduct.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kang98.data.dataproduct.repository.ProductRepository;
+import com.kang98.data.dataproduct.repository.ProductsRepository;
 import com.kang98.service.serviceproduct.config.ProductServiceConfig;
 import com.kang98.service.serviceproduct.dto.GetProductsRequest;
 import com.kang98.service.serviceproduct.dto.GetProductsResponse;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReadProductsControllerIT {
 
     @Autowired
-    private  ProductRepository productRepository;
+    private ProductsRepository productsRepository;
 
     @Autowired
     private ReadProductsService readProductsService;

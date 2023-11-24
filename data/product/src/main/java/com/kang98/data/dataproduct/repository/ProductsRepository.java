@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends MongoRepository<Product, String> {
+public interface ProductsRepository extends MongoRepository<Product, String> {
 
     @Query("{'product_name': { $regex: ?0, $options: 'i' }}")
     List<Product> findAllByName(String productName);
