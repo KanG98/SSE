@@ -1,0 +1,27 @@
+{
+  "customerId": "32049231jf80afd5cf0bdd1e",
+  "orderDate": "2023-05-15T14:30:00Z",
+  "shippingAddress": "456 Oak St, Villagetown",
+  "totalAmount": 200.75,
+  "paymentMethod": "Debit Card",
+  "orderStatus": "Processing",
+  "deliveredDate": "2023-05-20T10:00:00Z",
+  "scheduledDelivery": "2023-05-20T10:00:00Z",
+  "discounts": 15,
+  "taxAmount": 10.25,
+  "notes": "Special handling required",
+  "products": [
+    {
+      "productId": "7a1b2c3d4e5f6a7b8c9d0e1f",
+      "productName": "Gadget X",
+      "quantity": 3,
+      "unitPrice": 60
+    },
+    {
+      "productId": "8b2c3d4e5f6a7b8c9d0e1f2a",
+      "productName": "Fashionable Item",
+      "quantity": 2,
+      "unitPrice": 40
+    }
+  ]
+}

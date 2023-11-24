@@ -3,8 +3,8 @@ info:
   version: "1.0.0"
   title: "SSE Endpoints"
 
-host: localhost:8080
-basePath: /v1
+host: localhost:8080, localhost:8081
+basePath:
 schemes:
   - http
 

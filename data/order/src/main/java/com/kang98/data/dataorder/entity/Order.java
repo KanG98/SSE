@@ -1,6 +1,6 @@
 package com.kang98.data.dataorder.entity;
 
-import com.kang98.data.dataproduct.entity.Product;
+import com.kang98.data.dataproduct.entity.ProductInOrderInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -52,6 +52,6 @@ public class Order {
 
     private String notes;
 
-    private List<Product> products;
+    private List<ProductInOrderInfo> products;
 
 }

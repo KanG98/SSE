@@ -1,5 +1,6 @@
 package com.kang98.service.serviceorder.dto;
 
+import com.kang98.data.dataproduct.entity.ProductInOrderInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -9,8 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
-
-import com.kang98.data.dataproduct.entity.Product;
 
 @Data
 @Builder
@@ -53,5 +52,5 @@ public class CreateOrdersRequest {
     private String notes;
 
     @NotNull
-    private List<@Valid Product> products;
+    private List<@Valid ProductInOrderInfo> products;
 }

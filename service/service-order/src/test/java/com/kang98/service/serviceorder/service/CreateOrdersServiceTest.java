@@ -1,4 +1,4 @@
-package com.kang98.test.service.serviceorder.service;
+package com.kang98.service.serviceorder.service;
 
 import com.kang98.data.dataorder.entity.Order;
 import com.kang98.data.dataorder.repository.OrdersRepository;
