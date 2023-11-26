@@ -8,6 +8,4 @@ include 'service:service-order'
 findProject(':service:service-order')?.name = 'service-order'
 include 'data:order'
 findProject(':data:order')?.name = 'order'
-include 'service:service-location'
-findProject(':service:service-location')?.name = 'service-location'
 
