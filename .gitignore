@@ -38,3 +38,6 @@ out/
 
 ### npm modules
 /SSE-JS/**/node_modules/
+
+### mac
+**/.DS_Store
