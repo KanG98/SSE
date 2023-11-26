@@ -13,6 +13,8 @@ tags:
     description: Product service endpoints
   - name: Order
     description: Order service endpoints
+  - name: Location
+    description: Location service endpoints
 paths:
   /products/all:
     post:
@@ -153,7 +155,7 @@ paths:
                 type: string
                 example: "123 Main St, Cityville"
               totalAmount:
-                type: float
+                type: number
                 example: 150.00
               paymentMethod:
                 type: string
@@ -168,16 +170,17 @@ paths:
                 type: string
                 example: "2023-01-02T08:00:00Z"
               discounts:
-                type: float
+                type: number
                 example: 10.00
               taxAmount:
-                type: float
+                type: number
                 example: 8.50
               notes:
                 type: string
                 example: "Express shipping requested"
               products:
                 type: array
+                items:
                 example:
                   - productId: "5f90c393a380afd5cf0bdd1c"
                     productName: "Product A"
@@ -203,3 +206,24 @@ paths:
               }
         500:
           description: "Internal server error"
+  ws://localhost:9090/dm/{dmId}:
+    post:
+      tags:
+        - Location
+      summary:  Websocket to location service - get/send dm location.
+      description: /dm allows sending latest location to channel, the channel is dmId
+
+      parameters:
+        - name: message
+          in: body
+          required: false
+          description: latest location of dm.  Content type - Text
+          schema:
+            type: string
+            example: "40.640997, -74.010685"
+  ws://localhost:9090/{dmId}:
+    post:
+      tags:
+        - Location
+      summary: Websocket to location service - get dm location.
+      description: Allows getting the latest location of dm with {dmId}, the channel is dmId; cannot send message
