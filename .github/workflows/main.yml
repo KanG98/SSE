@@ -18,4 +18,4 @@ jobs:
       - name: Gradle assemble
         run: ./gradlew clean assemble
       - name: Gradle check
-        run: ./gradlew -B clean check
+        run: ./gradlew clean check
