@@ -43,5 +43,5 @@ dependencies {
 test {
     useJUnitPlatform()
     exclude '**/webclient/**'
-    exclude '**IT**'
+    exclude '**/IT/**'
 }

@@ -24,6 +24,4 @@ jar {
 
 tasks.named('test') {
 	useJUnitPlatform()
-    exclude '**/webclient/**'
-	exclude '**IT**'
 }
