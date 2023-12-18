@@ -1,4 +1,4 @@
-package com.kang98.service.serviceproduct.controller.IT;
+package com.kang98.service.serviceproduct.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kang98.service.serviceproduct.config.ProductServiceMockProducts;
