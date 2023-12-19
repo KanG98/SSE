@@ -20,6 +20,12 @@ allprojects {
 
 jar {
 	enabled = true
+	manifest {
+		attributes(
+				'Class-Path': 'lib/SSE-0.0.1-SNAPSHOT.jar',
+				'Main-Class': 'com.kang98.service.serviceproduct.ProductServiceApplication'
+		)
+	}
 }
 
 tasks.named('test') {
