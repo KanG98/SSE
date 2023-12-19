@@ -36,6 +36,21 @@ dependencies {
     // mongodb
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
+    // spring security
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.2.0'
+
+    // jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.3'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.10.2'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.3'
+
+    // spring devtool
+    compileOnly("org.springframework.boot:spring-boot-devtools")
+
+    // jpa
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.2.0'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
     // other packages
     implementation project(':data:product')
 }

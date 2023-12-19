@@ -1,14 +1,20 @@
 package com.kang98.service.serviceproduct.controller;
 
 import com.kang98.data.dataproduct.entity.Product;
+import com.kang98.service.serviceproduct.dto.AuthRequest;
 import com.kang98.service.serviceproduct.dto.GetProductsRequest;
 import com.kang98.service.serviceproduct.dto.GetProductsResponse;
+import com.kang98.service.serviceproduct.entity.User;
+import com.kang98.service.serviceproduct.service.JwtService;
 import com.kang98.service.serviceproduct.service.ReadProductsService;
+import com.kang98.service.serviceproduct.service.UserInfoUserDetailService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +32,12 @@ public class ReadProductsController {
 
     private final ReadProductsService readProductsService;
 
-    @PostMapping(READ_ALL_PRODUCTS_PATH)
+    private final JwtService jwtService;
+
+    private final UserInfoUserDetailService userInfoUserDetailService;
+
+    @GetMapping(READ_ALL_PRODUCTS_PATH)
+//    @PreAuthorize("hasAuthority('ADMIN')") // only ADMIN can access it
     public GetProductsResponse getAllProducts() {
         log.info("Get all products called");
         List<Product> productList;
@@ -60,5 +71,14 @@ public class ReadProductsController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error: " + e.getMessage(), e);
         }
         return GetProductsResponse.builder().productList(productList).build();
+    }
+
+    @PostMapping("/authenticate")
+    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+        return jwtService.generateToken(authRequest.getUsername());
+    }
+    @PostMapping("/new")
+    public String addNewUser(@RequestBody User userInfo){
+        return userInfoUserDetailService.addUser(userInfo);
     }
 }
