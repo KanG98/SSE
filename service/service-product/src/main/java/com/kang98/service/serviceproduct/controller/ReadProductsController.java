@@ -9,12 +9,14 @@ import com.kang98.service.serviceproduct.service.JwtService;
 import com.kang98.service.serviceproduct.service.ReadProductsService;
 import com.kang98.service.serviceproduct.service.UserInfoUserDetailService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +38,9 @@ public class ReadProductsController {
 
     private final UserInfoUserDetailService userInfoUserDetailService;
 
-    @GetMapping(READ_ALL_PRODUCTS_PATH)
+    private final AuthenticationManager authenticationManager;
+
+    @PostMapping(READ_ALL_PRODUCTS_PATH)
 //    @PreAuthorize("hasAuthority('ADMIN')") // only ADMIN can access it
     public GetProductsResponse getAllProducts() {
         log.info("Get all products called");
@@ -75,8 +79,15 @@ public class ReadProductsController {
 
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        return jwtService.generateToken(authRequest.getUsername());
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        if(authentication.isAuthenticated()) {
+            return jwtService.generateToken(authRequest.getUsername());
+        }
+        else {
+            throw new UsernameNotFoundException("invalid user request");
+        }
     }
+
     @PostMapping("/new")
     public String addNewUser(@RequestBody User userInfo){
         return userInfoUserDetailService.addUser(userInfo);
