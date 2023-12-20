@@ -3,8 +3,8 @@ info:
   version: "1.0.0"
   title: "SSE Endpoints"
 
-host: localhost:8080, localhost:8081
-basePath:
+host: localhost:8080
+# basePath:
 schemes:
   - http
 
@@ -35,7 +35,7 @@ paths:
                 "price": 50.00,
                 "stock_quantity": 100,
                 "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
-                "date_added": ISODate("2023-01-01T08:00:00Z")
+                "date_added": "ISODate('2023-01-01T08:00:00Z')"
               },
               {
                 "product_name": "Product A II",
@@ -45,7 +45,7 @@ paths:
                 "price": 21.00,
                 "stock_quantity": 100,
                 "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
-                "date_added": ISODate("2023-01-01T08:00:00Z")
+                "date_added": "ISODate('2023-01-01T08:00:00Z')"
               },
               {
                 "product_name": "Product B",
@@ -55,7 +55,7 @@ paths:
                 "price": 22.00,
                 "stock_quantity": 32,
                 "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
-                "date_added": ISODate("2023-01-01T08:00:00Z")
+                "date_added": "ISODate('2023-01-01T08:00:00Z')"
               }
             ]
         500:
@@ -72,14 +72,14 @@ paths:
           in: body
           required: true
           schema:
-              type: object
-              required:
-                - productName
-              properties:
-                productName:
-                  type: string
-              example:
-                productName: Product A
+            type: object
+            required:
+              - productName
+            properties:
+              productName:
+                type: string
+            example:
+              productName: Product A
       responses:
         200:
           description: "Successful response"
@@ -93,7 +93,7 @@ paths:
                 "price": 50.00,
                 "stock_quantity": 100,
                 "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
-                "date_added": ISODate("2023-01-01T08:00:00Z")
+                "date_added": "ISODate('2023-01-01T08:00:00Z')"
               },
               {
                 "product_name": "Product A II",
@@ -103,7 +103,7 @@ paths:
                 "price": 21.00,
                 "stock_quantity": 100,
                 "supplier_id": ObjectId("5f90c393a380afd5cf0bdd1e"),
-                "date_added": ISODate("2023-01-01T08:00:00Z")
+                "date_added": "ISODate('2023-01-01T08:00:00Z')"
               }
             ]
         400:
@@ -181,15 +181,15 @@ paths:
               products:
                 type: array
                 items:
-                example:
-                  - productId: "5f90c393a380afd5cf0bdd1c"
-                    productName: "Product A"
-                    quantity: 2
-                    unitPrice: 50.00
-                  - productId: "5f90c393a380afd5cf0bdd1d"
-                    productName: "Product B"
-                    quantity: 1
-                    unitPrice: 50.00
+                  example:
+                    - productId: "5f90c393a380afd5cf0bdd1c"
+                      productName: "Product A"
+                      quantity: 2
+                      unitPrice: 50.00
+                    - productId: "5f90c393a380afd5cf0bdd1d"
+                      productName: "Product B"
+                      quantity: 1
+                      unitPrice: 50.00
       responses:
         201:
           description: "Successful response"
@@ -206,14 +206,19 @@ paths:
               }
         500:
           description: "Internal server error"
-  ws://localhost:9090/dm/{dmId}:
+  /ws://localhost:9090/dm/{dmId}:
     post:
+
       tags:
         - Location
       summary:  Websocket to location service - get/send dm location.
       description: /dm allows sending latest location to channel, the channel is dmId
 
       parameters:
+        - name: dmId
+          in: path
+          required: true
+          type: integer
         - name: message
           in: body
           required: false
@@ -221,9 +226,21 @@ paths:
           schema:
             type: string
             example: "40.640997, -74.010685"
-  ws://localhost:9090/{dmId}:
+      responses:
+        200:
+          description: "location"
+
+  /ws://localhost:9090/{dmId}:
     post:
+      parameters:
+        - name: dmId
+          in: path
+          required: true
+          type: integer
       tags:
         - Location
       summary: Websocket to location service - get dm location.
       description: Allows getting the latest location of dm with {dmId}, the channel is dmId; cannot send message
+      responses:
+        200:
+          description: "location"
