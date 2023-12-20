@@ -1,1 +1,1 @@
-DBUSER=xxx;DBPWD=xxxxx
+DBUSER=xxx;DBPWD=xxxxx;SECRET=xxxxxxxxxx;

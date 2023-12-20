@@ -20,8 +20,9 @@ public class JwtService {
 
     private final String SECRET;
 
-    public JwtService(@Value("${SECRET}") String secret){
+    public JwtService(@Value("${SECRET:samplesecret}") String secret){
         this.SECRET = secret;
+        System.out.println("The secret for JWT is: " + this.SECRET);
     }
 
     public String extractUsername(String token) {
