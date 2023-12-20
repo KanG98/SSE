@@ -26,8 +26,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ReadProductsControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
     @Mock
     private ReadProductsService readProductsService;
 

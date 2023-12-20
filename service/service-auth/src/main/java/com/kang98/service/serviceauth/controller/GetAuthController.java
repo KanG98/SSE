@@ -1,6 +1,7 @@
 package com.kang98.service.serviceauth.controller;
 
 import com.kang98.service.serviceauth.dto.AuthRequest;
+import com.kang98.service.serviceauth.dto.AuthResponse;
 import com.kang98.service.serviceauth.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,10 +26,11 @@ public class GetAuthController {
     }
 
     @PostMapping("/authenticate")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        if(authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
+    public AuthResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+        if(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())).isAuthenticated()) {
+//        if (authentication.isAuthenticated()) {
+            String token = jwtService.generateToken(authRequest.getUsername());
+            return AuthResponse.builder().jwt_token(token).build();
         }
         else {
             throw new UsernameNotFoundException("invalid user request");

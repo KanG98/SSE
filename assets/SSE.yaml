@@ -45,7 +45,7 @@ paths:
         200:
           description: "Successful response"
           examples:
-            application/json: "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMzA5MTg0OCwiZXhwIjoxNzAzMDkzNjQ4fQ.nuiDdPzdRlmL4gwUNmELOOU2nFfEAb5sg4SxsG2b62UHn6wgOhc-xReeuVzr3WI1"
+            application/json: {"jwt_token":"eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMzA5MTg0OCwiZXhwIjoxNzAzMDkzNjQ4fQ.nuiDdPzdRlmL4gwUNmELOOU2nFfEAb5sg4SxsG2b62UHn6wgOhc-xReeuVzr3WI1"}
         403:
           description: "Forbidden. Bad credential"
 
