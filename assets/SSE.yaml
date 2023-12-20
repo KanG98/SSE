@@ -9,13 +9,46 @@ schemes:
   - http
 
 tags:
+  - name: Auth
+    description: Auth service endpoints. localhost:50231
   - name: Product
-    description: Product service endpoints
+    description: Product service endpoints. localhost:8081
   - name: Order
-    description: Order service endpoints
+    description: Order service endpoints. localhost:8082
   - name: Location
-    description: Location service endpoints
+    description: Location service endpoints. ws://localhost:9090
 paths:
+  /authenticate:
+    post:
+      tags:
+        - Auth
+      summary: "Authenticates user and gives back jwt token"
+      description: "Authenticates user and gives back jwt token"
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - username
+              - password
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            example:
+              username: user1
+              password: password1
+      responses:
+        200:
+          description: "Successful response"
+          examples:
+            application/json: "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcwMzA5MTg0OCwiZXhwIjoxNzAzMDkzNjQ4fQ.nuiDdPzdRlmL4gwUNmELOOU2nFfEAb5sg4SxsG2b62UHn6wgOhc-xReeuVzr3WI1"
+        403:
+          description: "Forbidden. Bad credential"
+
   /products/all:
     post:
       tags:
@@ -58,6 +91,8 @@ paths:
                 "date_added": "ISODate('2023-01-01T08:00:00Z')"
               }
             ]
+        403:
+          description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
 
@@ -117,6 +152,8 @@ paths:
                 "detail": "Invalid request content.",
                 "instance": "/orders"
               }
+        403:
+          description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
   /orders:
@@ -204,6 +241,8 @@ paths:
                 "detail": "Invalid request content.",
                 "instance": "/orders"
               }
+        403:
+          description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
   /ws://localhost:9090/dm/{dmId}:
