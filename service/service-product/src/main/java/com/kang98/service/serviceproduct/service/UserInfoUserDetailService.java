@@ -2,9 +2,7 @@ package com.kang98.service.serviceproduct.service;
 
 import com.kang98.service.serviceproduct.entity.User;
 import com.kang98.service.serviceproduct.repository.UserRepository;
-import com.kang98.service.serviceproduct.service.helpers.UserInfoUserDetails;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.kang98.service.serviceproduct.service.helpers.UserInfoUserDetailsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,7 +26,7 @@ public class UserInfoUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> userInfo = repository.findByName(username);
         System.out.println(userInfo);
-        return userInfo.map(UserInfoUserDetails::new)
+        return userInfo.map(UserInfoUserDetailsMapper::new)
                     .orElseThrow(() -> new UsernameNotFoundException("user not found "+username));
     }
 

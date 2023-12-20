@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserInfoUserDetails implements UserDetails {
+public class UserInfoUserDetailsMapper implements UserDetails {
 
     private String name;
 
@@ -18,7 +18,7 @@ public class UserInfoUserDetails implements UserDetails {
 
     private List<GrantedAuthority> authorities;
 
-    public UserInfoUserDetails(User user) {
+    public UserInfoUserDetailsMapper(User user) {
         this.name = user.getName();
         this.password = user.getPassword();
         this.authorities = Arrays.stream(user.getRoles().split(","))
