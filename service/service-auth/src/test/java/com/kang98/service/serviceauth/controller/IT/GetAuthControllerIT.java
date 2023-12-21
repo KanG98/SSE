@@ -1,7 +1,6 @@
 package com.kang98.service.serviceauth.controller.IT;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kang98.service.serviceauth.config.SecurityConfig;
+import com.kang98.service.serviceauth.config.TestSecurityConfig;
 import com.kang98.service.serviceauth.controller.GetAuthController;
 import com.kang98.service.serviceauth.dto.AuthRequest;
 import com.kang98.service.serviceauth.dto.AuthResponse;
@@ -11,15 +10,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.authentication.BadCredentialsException;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes={SecurityConfig.class})
+@SpringBootTest(classes={TestSecurityConfig.class})
 public class GetAuthControllerIT {
 
     @Autowired
