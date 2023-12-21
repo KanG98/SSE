@@ -40,14 +40,12 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
 
     // other packages
-    implementation project(':data:auth')
     implementation project(':data:order')
     implementation project(':data:product')
 }
 
 test {
     useJUnitPlatform()
-    exclude '**/webclient/**'
-    exclude '**/IT/**'
-
+//    exclude '**/webclient/**'
+//    exclude '**/IT/**'
 }
