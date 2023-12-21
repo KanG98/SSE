@@ -2,7 +2,9 @@ package com.kang98.service.serviceauth.config;
 
 import com.kang98.service.serviceauth.service.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -18,7 +20,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
+@ComponentScan("com.kang98.service.serviceauth")
+@PropertySource("classpath:/application.properties")
+public class AuthServiceConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {

@@ -1,8 +1,8 @@
 package com.kang98.service.serviceauth.service;
 
-import com.kang98.service.serviceauth.entity.User;
-import com.kang98.service.serviceauth.repository.UserRepository;
-import com.kang98.service.serviceproduct.service.helpers.UserDetailsHelper;
+import com.kang98.data.dataauth.entity.User;
+import com.kang98.data.dataauth.repository.UserRepository;
+import com.kang98.service.serviceauth.service.helpers.UserDetailsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

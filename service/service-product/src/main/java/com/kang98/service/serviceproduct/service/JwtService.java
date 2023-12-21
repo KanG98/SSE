@@ -57,10 +57,10 @@ public class JwtService {
         int minutes = 30;
         return Jwts.builder()
                 .claims(claims)
-                    .subject(username)
-                    .issuedAt(new Date(System.currentTimeMillis()))
-                    .expiration(new Date(System.currentTimeMillis()+1000*60*minutes))
-                    .signWith(getSignKey()).compact();
+                .subject(username)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis()+1000*60*minutes))
+                .signWith(getSignKey()).compact();
     }
 
     private Boolean isTokenExpired(String token) {

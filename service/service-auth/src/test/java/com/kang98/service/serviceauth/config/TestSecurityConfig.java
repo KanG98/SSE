@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @TestConfiguration
 @EnableWebSecurity
 @EnableMethodSecurity
-@Import(SecurityConfig.class)
+@Import(AuthServiceConfig.class)
 public class TestSecurityConfig {
 
     @Value("${SECRET:samplesecret}") String secret;

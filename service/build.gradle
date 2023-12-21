@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    project('service-auth')
     project('service-product')
     project('service-order')
 }

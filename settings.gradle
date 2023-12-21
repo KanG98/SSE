@@ -10,4 +10,6 @@ include 'data:order'
 findProject(':data:order')?.name = 'order'
 include 'service:service-auth'
 findProject(':service:service-auth')?.name = 'service-auth'
+include 'data:auth'
+findProject(':data:auth')?.name = 'auth'
 

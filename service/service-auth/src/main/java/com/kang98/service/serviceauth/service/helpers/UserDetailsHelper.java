@@ -1,6 +1,6 @@
-package com.kang98.service.serviceproduct.service.helpers;
+package com.kang98.service.serviceauth.service.helpers;
 
-import com.kang98.service.serviceauth.entity.User;
+import com.kang98.data.dataauth.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
 package com.kang98.service.serviceproduct.service;
 
-import com.kang98.service.serviceproduct.entity.User;
-import com.kang98.service.serviceproduct.repository.UserRepository;
+import com.kang98.data.dataauth.entity.User;
+import com.kang98.data.dataauth.repository.UserRepository;
 import com.kang98.service.serviceproduct.service.helpers.UserInfoUserDetailsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +27,7 @@ public class UserInfoUserDetailService implements UserDetailsService {
         Optional<User> userInfo = repository.findByName(username);
         System.out.println(userInfo);
         return userInfo.map(UserInfoUserDetailsMapper::new)
-                    .orElseThrow(() -> new UsernameNotFoundException("user not found "+username));
+                .orElseThrow(() -> new UsernameNotFoundException("user not found "+username));
     }
 
     public String addUser(User userInfo) {
