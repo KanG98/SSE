@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,8 +28,7 @@ public class GetAuthControllerIT {
     private String password;
 
     @Test
-    void getJwtToken_authenticateAndGetToken_expectedNonNullToken() throws IOException {
-        System.out.println(username + password);
+    void getJwtToken_authenticateAndGetToken_expectedNonNullToken() {
         AuthRequest authRequest = AuthRequest.builder().username(username).password(password).build();
         var actual = getAuthController.authenticateAndGetToken(authRequest);
 

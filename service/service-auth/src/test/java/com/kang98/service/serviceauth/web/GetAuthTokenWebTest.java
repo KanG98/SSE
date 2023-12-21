@@ -6,6 +6,7 @@ import com.kang98.service.serviceauth.dto.AuthRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
@@ -20,10 +21,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 @Import(TestSecurityConfig.class)
 @AutoConfigureDataJpa
-public class GetAuthTokenWebClientTest {
+public class GetAuthTokenWebTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Value("${JWTUSER:sampleUser}")
+    private String username;
+
+    @Value("${JWTPWD:samplePwd}")
+    private String password;
+
+    @Test
+    void testGetAuthToken_expectedOK() throws Exception {
+        if (!username.equals("sampleUser") && !password.equals("samplePwd")) {
+            AuthRequest testUser = AuthRequest.builder().username(username).password(password).build();
+            mockMvc.perform(post("/authenticate")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(asJsonString(testUser))
+                    )
+                    .andExpect(status().isOk());
+        }
+    }
 
     @Test
     void testGetAuthToken_expectedForbidden() throws Exception {
@@ -34,6 +53,7 @@ public class GetAuthTokenWebClientTest {
                 )
                 .andExpect(status().isForbidden());
     }
+
     protected static String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();
