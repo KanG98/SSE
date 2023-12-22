@@ -1,4 +1,4 @@
-package com.kang98.service.serviceproduct.service;
+package com.kang98.service.serviceauth.service.helpers;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,11 +16,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtService {
+public class JwtHelper {
 
     private final String SECRET;
-
-    public JwtService(@Value("${SECRET:samplesecret}") String secret){
+    public JwtHelper(@Value("${SECRET:samplesecret}") String secret){
         this.SECRET = secret;
         System.out.println("The secret for JWT is: " + this.SECRET);
     }
@@ -57,10 +56,10 @@ public class JwtService {
         int minutes = 30;
         return Jwts.builder()
                 .claims(claims)
-                .subject(username)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+1000*60*minutes))
-                .signWith(getSignKey()).compact();
+                    .subject(username)
+                    .issuedAt(new Date(System.currentTimeMillis()))
+                    .expiration(new Date(System.currentTimeMillis()+1000*60*minutes))
+                    .signWith(getSignKey()).compact();
     }
 
     private Boolean isTokenExpired(String token) {

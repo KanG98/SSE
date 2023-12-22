@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +24,6 @@ import static com.kang98.service.serviceproduct.config.ProductServiceEndpoints.R
 public class ReadProductsController {
 
     private final ReadProductsService readProductsService;
-
-    private final AuthenticationManager authenticationManager;
 
     @PostMapping(READ_ALL_PRODUCTS_PATH)
 //    @PreAuthorize("hasAuthority('ADMIN')") // only ADMIN can access it
@@ -64,15 +61,4 @@ public class ReadProductsController {
         }
         return GetProductsResponse.builder().productList(productList).build();
     }
-
-//    @PostMapping("/authenticate")
-//    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-//        if(authentication.isAuthenticated()) {
-//            return jwtService.generateToken(authRequest.getUsername());
-//        }
-//        else {
-//            throw new UsernameNotFoundException("invalid user request");
-//        }
-//    }
 }

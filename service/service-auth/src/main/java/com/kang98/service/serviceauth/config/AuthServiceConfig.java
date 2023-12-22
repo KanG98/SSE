@@ -1,8 +1,7 @@
 package com.kang98.service.serviceauth.config;
 
-import com.kang98.service.serviceauth.service.UserDetailsImpl;
+import com.kang98.service.serviceauth.service.UserInfoUserDetailService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,20 +19,28 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@ComponentScan("com.kang98.service.serviceauth")
 @PropertySource("classpath:/application.properties")
 public class AuthServiceConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsImpl();
+//        UserDetails admin = User.withUsername("admin")
+//                .password(encoder.encode("admin123"))
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails user = User.withUsername("john")
+//                .password(encoder.encode("john"))
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(admin, user);
+        return new UserInfoUserDetailService();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())

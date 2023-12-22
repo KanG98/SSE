@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
 @Import(OrderServiceTestConfig.class)
-
 public class CreateOrdersWebTest {
 
     @Autowired

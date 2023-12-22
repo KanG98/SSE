@@ -39,8 +39,6 @@ dependencies {
 
     // others
     implementation project(':data:auth')
-    implementation project(':data:order')
-    implementation project(':data:product')
 }
 
 test {

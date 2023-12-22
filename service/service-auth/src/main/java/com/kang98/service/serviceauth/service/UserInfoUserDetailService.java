@@ -1,4 +1,4 @@
-package com.kang98.service.serviceproduct.service;
+package com.kang98.service.serviceauth.service;
 
 import com.kang98.data.dataauth.entity.User;
 import com.kang98.data.dataauth.repository.UserRepository;

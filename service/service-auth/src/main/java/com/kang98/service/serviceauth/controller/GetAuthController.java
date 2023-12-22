@@ -2,7 +2,7 @@ package com.kang98.service.serviceauth.controller;
 
 import com.kang98.service.serviceauth.dto.AuthRequest;
 import com.kang98.service.serviceauth.dto.AuthResponse;
-import com.kang98.service.serviceauth.service.JwtService;
+import com.kang98.service.serviceauth.service.helpers.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,19 +16,19 @@ public class GetAuthController {
 
     private final AuthenticationManager authenticationManager;
 
-    private final JwtService jwtService;
+    private final JwtHelper jwtHelper;
 
     @Autowired
-    public GetAuthController(AuthenticationManager authenticationManager, JwtService jwtService) {
+    public GetAuthController(AuthenticationManager authenticationManager, JwtHelper jwtHelper) {
         this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
+        this.jwtHelper = jwtHelper;
     }
 
     @PostMapping("/authenticate")
     public AuthResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         if(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())).isAuthenticated()) {
 //        if (authentication.isAuthenticated()) {
-            String token = jwtService.generateToken(authRequest.getUsername());
+            String token = jwtHelper.generateToken(authRequest.getUsername());
             return AuthResponse.builder().jwt_token(token).build();
         }
         else {

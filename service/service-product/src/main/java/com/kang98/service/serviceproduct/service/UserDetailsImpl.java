@@ -1,4 +1,4 @@
-package com.kang98.service.serviceauth.service;
+package com.kang98.service.serviceproduct.service;
 
 import com.kang98.data.dataauth.entity.User;
 import com.kang98.data.dataauth.repository.UserRepository;
@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
 
 @Component
 public class UserDetailsImpl implements UserDetailsService {

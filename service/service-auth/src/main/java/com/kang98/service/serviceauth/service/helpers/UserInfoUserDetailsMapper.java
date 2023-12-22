@@ -1,4 +1,4 @@
-package com.kang98.service.serviceproduct.service.helpers;
+package com.kang98.service.serviceauth.service.helpers;
 
 import com.kang98.data.dataauth.entity.User;
 import org.springframework.security.core.GrantedAuthority;

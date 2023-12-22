@@ -1,6 +1,6 @@
 package com.kang98.service.serviceauth.config;
 
-import com.kang98.service.serviceauth.service.JwtService;
+import com.kang98.service.serviceauth.service.helpers.JwtHelper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ public class TestSecurityConfig {
     @Value("${SECRET:samplesecret}") String secret;
 
     @Bean
-    public JwtService jwtService() {
-        return new JwtService(secret);
+    public JwtHelper jwtService() {
+        return new JwtHelper(secret);
     }
 }
