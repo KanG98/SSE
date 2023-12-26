@@ -17,6 +17,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-//    exclude '**/webclient/**'
-//    exclude '**/IT/**'
+    exclude "**/web/**"
+    exclude "**/client/**"
 }

@@ -39,7 +39,7 @@ public class CreateOrdersClientTest {
     private int port;
 
     @Test
-    public void testCreateOrderHttpPost_expectedSuccess() throws IOException, URISyntaxException, ClassNotFoundException {
+    public void testCreateOrderHttpPost_expectedSuccess() throws IOException, URISyntaxException {
         InputStream requestJson = this.getClass().getResourceAsStream(TEST_CREATE_ORDER_REQUEST);
 
         final String baseUrl = "http://localhost:" + port + "/orders";
