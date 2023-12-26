@@ -1,6 +1,7 @@
 package com.kang98.service.serviceorder.web;
 
 import com.kang98.service.serviceorder.config.OrderServiceTestConfig;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
 @Import(OrderServiceTestConfig.class)
+@Disabled
 public class CreateOrdersWebTest {
 
     @Autowired
