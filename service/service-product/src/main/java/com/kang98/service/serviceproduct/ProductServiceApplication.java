@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EntityScan("com.kang98.data.dataauth.entity")
 @EnableMongoRepositories("com.kang98.data.dataproduct.repository")
 @EnableJpaRepositories("com.kang98.data.dataauth.repository")
 @ComponentScan({"com.kang98.data.dataauth.repository",

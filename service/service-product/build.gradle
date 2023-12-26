@@ -69,6 +69,4 @@ jar {
 
 test {
     useJUnitPlatform()
-//    exclude '**/webclient/**'
-//    exclude '**/IT/**'
 }

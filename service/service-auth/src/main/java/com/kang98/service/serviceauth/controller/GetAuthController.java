@@ -27,8 +27,9 @@ public class GetAuthController {
     @PostMapping("/authenticate")
     public AuthResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         if(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())).isAuthenticated()) {
-//        if (authentication.isAuthenticated()) {
             String token = jwtHelper.generateToken(authRequest.getUsername());
+            System.out.println(token);
+            System.out.println(authRequest);
             return AuthResponse.builder().jwt_token(token).build();
         }
         else {
