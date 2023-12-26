@@ -37,6 +37,10 @@ public class TestSecurityConfig {
         dataSource.setUrl(env.getProperty("app_datasource_url"));
         dataSource.setUsername(env.getProperty("app_datasource_username"));
         dataSource.setPassword(env.getProperty("app_datasource_password"));
+        System.out.println(dataSource.getUrl());
+        System.out.println(dataSource.getConnectionProperties());
+        System.out.println(dataSource.getUsername());
+        System.out.println(dataSource.getPassword());
         return dataSource;
     }
 }
