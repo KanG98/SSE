@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @ComponentScan({"com.kang98.data.dataauth.repository",
         "com.kang98.service.serviceauth.service.helpers",
         "com.kang98.service.serviceproduct"})
+@EntityScan({"com.kang98.data.dataauth.entity"})
 public class ProductServiceApplication {
 
     public static void main(String[] args) {
