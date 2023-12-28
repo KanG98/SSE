@@ -10,12 +10,13 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
-@Document(collection = "products")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "products")
 public class Product {
+
     @Id
     private String id;
 

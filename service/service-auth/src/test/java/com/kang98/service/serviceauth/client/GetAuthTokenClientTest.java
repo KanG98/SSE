@@ -17,7 +17,6 @@ import java.net.URISyntaxException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GetAuthTokenClientTest {
 
@@ -48,7 +47,7 @@ public class GetAuthTokenClientTest {
     }
 
     @Test
-    public void testGetAuthenticationHttpPost_expectedForbidden() throws IOException, URISyntaxException {
+    public void testGetAuthenticationHttpPost_expectedForbidden() throws URISyntaxException {
 
         final String baseUrl = "http://localhost:" + port + "/authenticate";
 

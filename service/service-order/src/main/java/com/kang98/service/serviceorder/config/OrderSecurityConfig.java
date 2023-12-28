@@ -24,16 +24,6 @@ public class OrderSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-//        UserDetails admin = User.withUsername("admin")
-//                .password(encoder.encode("admin123"))
-//                .roles("ADMIN")
-//                .build();
-//
-//        UserDetails user = User.withUsername("john")
-//                .password(encoder.encode("john"))
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
         return new UserInfoUserDetailService();
     }
 

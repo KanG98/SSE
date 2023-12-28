@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "orders")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "orders")
 public class Order {
     @Id
     private String id;
@@ -53,5 +53,4 @@ public class Order {
     private String notes;
 
     private List<ProductInOrderInfo> products;
-
 }

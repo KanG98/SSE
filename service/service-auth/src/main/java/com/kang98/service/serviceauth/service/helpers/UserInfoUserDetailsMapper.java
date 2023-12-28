@@ -10,6 +10,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Maps User info from database to User detail for spring security
+ */
 public class UserInfoUserDetailsMapper implements UserDetails {
 
     private String name;

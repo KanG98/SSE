@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * ProductInfo entity for items stats for orders.
+ */
 @Data
 @Builder
 @AllArgsConstructor

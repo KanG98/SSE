@@ -38,6 +38,4 @@ public class GetAuthControllerIT {
                 () -> assertEquals(actual.getClass(), AuthResponse.class)
         );
     }
-
 }
-
