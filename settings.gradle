@@ -12,4 +12,8 @@ include 'service:service-auth'
 findProject(':service:service-auth')?.name = 'service-auth'
 include 'data:auth'
 findProject(':data:auth')?.name = 'auth'
+include 'data:deliveryman'
+findProject(':data:deliveryman')?.name = 'deliveryman'
+include 'service:service-deliveryman'
+findProject(':service:service-deliveryman')?.name = 'service-deliveryman'
 
