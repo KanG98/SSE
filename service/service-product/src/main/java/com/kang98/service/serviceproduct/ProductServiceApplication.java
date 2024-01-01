@@ -10,12 +10,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableMongoRepositories("com.kang98.data.dataproduct.repository")
 @EnableJpaRepositories("com.kang98.data.dataauth.repository")
-@ComponentScan({"com.kang98.data.dataauth.repository",
-        "com.kang98.service.serviceauth.service.helpers",
-        "com.kang98.service.serviceproduct"})
-@EntityScan({"com.kang98.data.dataauth.entity"})
+//@ComponentScan({"com.kang98.data.dataauth.repository",
+//        "com.kang98.service.serviceauth.service.helpers",
+//        "com.kang98.service.serviceproduct"})
+//@EntityScan({"com.kang98.data.dataauth.entity"})
 public class ProductServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ProductServiceApplication.class, args);
     }
