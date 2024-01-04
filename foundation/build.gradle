@@ -40,6 +40,14 @@ dependencies {
     implementation project(':data:auth')
 }
 
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
 test {
     useJUnitPlatform()
 }
