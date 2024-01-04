@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 @Component
 public class JwtToken {
 
-    String getToken(@Value("${JWTUSER:sampleUser}") String username, @Value("${JWTPWD:samplePwd}") String password ) throws URISyntaxException {
+    public String getToken(@Value("${JWTUSER:sampleUser}") String username, @Value("${JWTPWD:samplePwd}") String password) throws URISyntaxException {
         System.out.println("username" + username);
         System.out.println("pwd" + password);
         String token = "";
