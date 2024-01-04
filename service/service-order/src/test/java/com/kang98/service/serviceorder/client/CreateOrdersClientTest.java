@@ -1,15 +1,9 @@
-package com.kang98.service.serviceorder.webclient;
+package com.kang98.service.serviceorder.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kang98.service.serviceauth.dto.AuthRequest;
 import com.kang98.service.serviceauth.dto.AuthResponse;
 import com.kang98.service.serviceorder.dto.CreateOrdersRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClients;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +16,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
-import static com.kang98.service.serviceorder.config.OrderServiceTestConfig.TEST_CREATE_ORDER_INVALID_REQUEST;
 import static com.kang98.service.serviceorder.config.OrderServiceTestConfig.TEST_CREATE_ORDER_REQUEST;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Disabled
