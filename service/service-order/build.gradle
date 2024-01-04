@@ -47,6 +47,7 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 
     // other packages
+    implementation project(':foundation')
     implementation project(':data:auth')
     implementation project(':data:order')
     implementation project(':data:product')

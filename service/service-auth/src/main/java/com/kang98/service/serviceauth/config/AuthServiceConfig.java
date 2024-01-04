@@ -1,8 +1,9 @@
 package com.kang98.service.serviceauth.config;
 
-import com.kang98.service.serviceauth.service.UserInfoUserDetailService;
+import com.kang98.foundation.security.UserInfoUserDetailService;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 @PropertySource("classpath:/local.properties")
 @EntityScan("com.kang98.data.dataauth.entity")
+@ComponentScan({"com.kang98.foundation.security"})
 public class AuthServiceConfig {
 
     @Bean

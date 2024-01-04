@@ -2,18 +2,15 @@ package com.kang98.service.serviceproduct.config;
 
 import com.kang98.foundation.security.JwtAuthFilter;
 import com.kang98.foundation.security.UserInfoUserDetailService;
+import com.kang98.service.serviceauth.config.AuthServiceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,43 +19,27 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @ComponentScan({"com.kang98.data.dataauth.repository",
         "com.kang98.foundation"
 })
+@Import(AuthServiceConfig.class)
 public class ProductSecurityConfig {
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new UserInfoUserDetailService();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Autowired
-    private JwtAuthFilter authFilter;
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   DaoAuthenticationProvider authenticationProvider,
+                                                   UserInfoUserDetailService userInfoUserDetailService,
+                                                   PasswordEncoder passwordEncoder,
+                                                   JwtAuthFilter authFilter) throws Exception {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        authenticationProvider.setUserDetailsService(userInfoUserDetailService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
         return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests( auth ->
+                .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/products/**").authenticated()
                 )
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
+                .authenticationProvider(authenticationProvider)
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
     }
 }

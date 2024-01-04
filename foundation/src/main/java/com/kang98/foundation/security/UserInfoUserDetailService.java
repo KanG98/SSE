@@ -4,7 +4,6 @@ import com.kang98.data.dataauth.entity.User;
 import com.kang98.data.dataauth.repository.UserRepository;
 import com.kang98.foundation.security.UserInfoUserDetailsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +14,6 @@ import java.util.Optional;
 
 
 @Component
-@EnableJpaRepositories("com.kang98.data.dataauth.repository")
 public class UserInfoUserDetailService implements UserDetailsService {
 
     @Autowired

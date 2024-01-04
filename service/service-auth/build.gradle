@@ -38,6 +38,7 @@ dependencies {
 
     // others
     implementation project(':data:auth')
+    implementation project(':foundation')
 }
 
 test {

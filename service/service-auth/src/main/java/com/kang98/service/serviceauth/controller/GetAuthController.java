@@ -2,7 +2,7 @@ package com.kang98.service.serviceauth.controller;
 
 import com.kang98.service.serviceauth.dto.AuthRequest;
 import com.kang98.service.serviceauth.dto.AuthResponse;
-import com.kang98.service.serviceauth.service.helpers.JwtHelper;
+import com.kang98.foundation.security.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

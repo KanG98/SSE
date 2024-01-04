@@ -1,6 +1,6 @@
 package com.kang98.service.serviceauth.config;
 
-import com.kang98.service.serviceauth.service.helpers.JwtHelper;
+import com.kang98.foundation.security.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;

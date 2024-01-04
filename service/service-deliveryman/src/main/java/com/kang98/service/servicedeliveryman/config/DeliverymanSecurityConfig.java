@@ -17,21 +17,18 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@ComponentScan({"com.kang98.data.dataauth.repository",
-        "com.kang98.foundation.security"})
+@ComponentScan({"com.kang98.data.dataauth.repository", "com.kang98.foundation.security"})
 @EntityScan({"com.kang98.data.dataauth.entity"})
 @Import(AuthServiceConfig.class)
 public class DeliverymanSecurityConfig {
-
-    @Autowired
-    private JwtAuthFilter authFilter;
 
     @Bean
     @Autowired
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    DaoAuthenticationProvider authenticationProvider,
                                                    UserInfoUserDetailService userInfoUserDetailService,
-                                                   PasswordEncoder passwordEncoder) throws Exception {
+                                                   PasswordEncoder passwordEncoder,
+                                                   JwtAuthFilter authFilter) throws Exception {
 
         authenticationProvider.setUserDetailsService(userInfoUserDetailService);
         authenticationProvider.setPasswordEncoder(passwordEncoder);
