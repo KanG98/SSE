@@ -1,7 +1,6 @@
 package com.kang98.service.serviceproduct.client;
 
-import com.kang98.service.serviceauth.dto.AuthRequest;
-import com.kang98.service.serviceauth.dto.AuthResponse;
+import com.kang98.foundation.security.JwtToken;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +20,9 @@ public class ReadProductsClientTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
+    @Autowired
+    private JwtToken jwtToken;
+
     @LocalServerPort
     private int port;
 
@@ -32,30 +32,13 @@ public class ReadProductsClientTest {
     @Value("${JWTPWD:samplePwd}")
     private String password;
 
-    String getToken() throws URISyntaxException {
-        System.out.println("username" + username);
-        System.out.println("pwd" + password);
-        String token = "";
-        RestTemplate restTemplate = new RestTemplate();
-        if (!username.equals("sampleUser") && !password.equals("samplePwd")) {
-            final String baseUrl = "http://localhost:" + "50231" + "/authenticate";
-
-            AuthRequest request = AuthRequest.builder().username(username).password(password).build();
-            URI location = new URI(baseUrl);
-            ResponseEntity<AuthResponse> response =
-                    restTemplate.postForEntity(location, request, AuthResponse.class);
-            token = response.getBody().getJwt_token();
-        }
-        return token;
-    }
-
     @Test
     @Disabled // currently not working due to auth
     public void testProductAllHttpPost_expectedSuccess() throws URISyntaxException {
 
         final String baseUrl = "http://localhost:" + port + "/products/all";
 
-        String token = getToken();
+        String token = jwtToken.getToken(username, password);
         System.out.println(token);
 
         HttpHeaders headers = new HttpHeaders();
