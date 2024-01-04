@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableMongoRepositories("com.kang98.data.dataproduct.repository")
-@EnableJpaRepositories("com.kang98.data.dataauth.repository")
+//@EnableJpaRepositories("com.kang98.data.dataauth.repository")
 //@ComponentScan({"com.kang98.data.dataauth.repository",
 //        "com.kang98.service.serviceauth.service.helpers",
 //        "com.kang98.service.serviceproduct"})

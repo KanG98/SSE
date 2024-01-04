@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @Import(ProductServiceConfig.class)
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/local.properties")
 @ComponentScan("com.kang98.data.dataauth")
 @EntityScan("com.kang98.data.dataauth.entity")
 @AutoConfigureDataMongo

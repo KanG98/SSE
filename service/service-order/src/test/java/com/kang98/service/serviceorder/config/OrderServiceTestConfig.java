@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @Import(OrderServiceConfig.class)
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/local.properties")
 @AutoConfigureDataMongo
 public class OrderServiceTestConfig {
     public static final String TEST_CREATE_ORDER_REQUEST = "/create-order-request.json";

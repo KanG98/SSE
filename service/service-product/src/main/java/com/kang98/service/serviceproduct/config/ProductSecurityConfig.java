@@ -1,7 +1,7 @@
 package com.kang98.service.serviceproduct.config;
 
-import com.kang98.service.serviceproduct.filter.JwtAuthFilter;
-import com.kang98.service.serviceproduct.service.UserInfoUserDetailService;
+import com.kang98.foundation.security.JwtAuthFilter;
+import com.kang98.foundation.security.UserInfoUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,21 +19,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@ComponentScan({"com.kang98.data.dataauth.repository", "com.kang98.service.serviceproduct"})
+@ComponentScan({"com.kang98.data.dataauth.repository",
+        "com.kang98.foundation"
+})
 public class ProductSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-//        UserDetails admin = User.withUsername("admin")
-//                .password(encoder.encode("admin123"))
-//                .roles("ADMIN")
-//                .build();
-//
-//        UserDetails user = User.withUsername("john")
-//                .password(encoder.encode("john"))
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
         return new UserInfoUserDetailService();
     }
 

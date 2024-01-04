@@ -20,7 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/local.properties")
 @EntityScan("com.kang98.data.dataauth.entity")
 public class AuthServiceConfig {
 

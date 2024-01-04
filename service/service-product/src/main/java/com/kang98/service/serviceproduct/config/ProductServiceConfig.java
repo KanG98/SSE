@@ -6,9 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/local.properties")
 @ComponentScan({"com.kang98.data.dataauth.repository",
-        "com.kang98.service.serviceauth.service.helpers",
         "com.kang98.service.serviceproduct",
         "com.kang98.service.serviceorder"})
 @EntityScan({"com.kang98.data.dataauth.entity"})

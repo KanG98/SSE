@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EnableMongoRepositories("com.kang98.data.dataorder.repository")
+@EnableMongoRepositories("com.kang98.data.datadeliveryman.repository")
 public class DeliverymanServiceApplication {
 
     public static void main(String[] args) {

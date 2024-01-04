@@ -34,6 +34,7 @@ dependencies {
     // other packages
     implementation project(':foundation')
     implementation project(':data:deliveryman')
+    implementation project(':service:service-auth')
 }
 
 test {
