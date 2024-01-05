@@ -3,6 +3,7 @@ package com.kang98.service.serviceproduct.controller.IT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kang98.data.dataproduct.repository.ProductsRepository;
 import com.kang98.service.serviceproduct.config.ProductServiceConfig;
+import com.kang98.service.serviceproduct.config.ProductServiceTestConfig;
 import com.kang98.service.serviceproduct.controller.ReadProductsController;
 import com.kang98.service.serviceproduct.dto.GetProductsRequest;
 import com.kang98.service.serviceproduct.dto.GetProductsResponse;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +23,8 @@ import static com.kang98.service.serviceproduct.config.ProductServiceTestConfig.
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes={ProductServiceConfig.class})
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes={ProductServiceTestConfig.class})
 public class ReadProductsControllerIT {
 
     @Autowired
