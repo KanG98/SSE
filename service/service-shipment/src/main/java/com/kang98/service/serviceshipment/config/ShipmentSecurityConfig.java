@@ -16,9 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@ComponentScan({"com.kang98.data.dataauth.repository",
-        "com.kang98.foundation"
-})
+@ComponentScan({"com.kang98.data.dataauth.repository", "com.kang98.foundation.security"})
 @Import(AuthServiceConfig.class)
 public class ShipmentSecurityConfig {
 
