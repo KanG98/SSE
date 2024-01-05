@@ -9,9 +9,11 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("classpath:/local.properties")
-@ComponentScan({"com.kang98.data.dataauth.repository",
-        "com.kang98.service.serviceauth.service.helpers",
-        "com.kang98.service.serviceorder"})
+@ComponentScan({"com.kang98.service.serviceauth.service.helpers",
+        "com.kang98.service.serviceorder",
+        "com.kang98.foundation.security",
+        "com.kang98.foundation.handler"
+})
 @EntityScan({"com.kang98.data.dataauth.entity"})
 public class OrderServiceConfig {
     @Bean

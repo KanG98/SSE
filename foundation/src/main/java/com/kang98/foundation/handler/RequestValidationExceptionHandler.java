@@ -1,4 +1,4 @@
-package com.kang98.service.serviceorder.controller.handlers;
+package com.kang98.foundation.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
