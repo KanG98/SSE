@@ -24,8 +24,8 @@ public class Deliveryman {
     @Field("last_name")
     private String lastName;
 
-    @Field("contact_number")
-    private String contactNumber;
+    @Field("phone_number")
+    private String phoneNumber;
 
     @Field("email")
     private String email;

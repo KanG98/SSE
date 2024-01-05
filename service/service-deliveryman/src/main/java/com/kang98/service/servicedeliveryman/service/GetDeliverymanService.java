@@ -16,4 +16,8 @@ public class GetDeliverymanService {
     public List<Deliveryman> getAllProducts() {
         return deliverymenRepository.findAll();
     }
+
+    public List<Deliveryman> getAllProductsByPhoneNumber(String phoneNumber) {
+        return deliverymenRepository.findAllByPhoneNumber(phoneNumber);
+    }
 }

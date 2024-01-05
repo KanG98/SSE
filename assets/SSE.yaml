@@ -303,7 +303,7 @@ paths:
               - id
               - firstName
               - lastName
-              - contactNumber
+              - phoneNumber
               - email
             properties:
               id:
@@ -315,7 +315,7 @@ paths:
               lastName:
                 type: string
                 example: "Doe"
-              contactNumber:
+              phoneNumber:
                 type: string
                 example: "1234567890"
               email:
@@ -354,14 +354,14 @@ paths:
                 "id": 1,
                 "firstName": "John",
                 "lastName": "Doe",
-                "contactNumber": "1234567890",
+                "phoneNumber": "1234567890",
                 "email": "john.doe@example.com"
               },
               {
                 "id": 2,
                 "firstName": "Alice",
                 "lastName": "Smith",
-                "contactNumber": "+9876543210",
+                "phoneNumber": "+9876543210",
                 "email": "alice.smith@example.com"
               }
             ]
@@ -430,7 +430,7 @@ paths:
                 "id": 1,
                 "firstName": "John",
                 "lastName": "Doe",
-                "contactNumber": "1234567890",
+                "phoneNumber": "1234567890",
                 "email": "john.doe@example.com"
               }
             ]

@@ -28,6 +28,7 @@ public class CreateOrdersRequest {
     private String shippingAddress;
 
     @Positive
+    @NotNull
     private Float totalAmount;
 
     @NotBlank
