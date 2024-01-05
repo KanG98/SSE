@@ -17,4 +17,8 @@ findProject(':data:deliveryman')?.name = 'deliveryman'
 include 'service:service-deliveryman'
 findProject(':service:service-deliveryman')?.name = 'service-deliveryman'
 include 'foundation'
+include 'service:service-shipment'
+findProject(':service:service-shipment')?.name = 'service-shipment'
+include 'data:shipment'
+findProject(':data:shipment')?.name = 'shipment'
 
