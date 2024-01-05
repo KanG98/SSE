@@ -34,6 +34,6 @@ public class GetDeliverymanControllerIT {
         GetDeliverymanByPhoneNumberRequest getDeliverymanByPhoneNumberRequest =
                 GetDeliverymanByPhoneNumberRequest.builder().phoneNumber("Not in db").build();
         List<Deliveryman> deliverymanList = getDeliverymenController.getDeliverymanByPhoneNumber(getDeliverymanByPhoneNumberRequest);
-        assert deliverymanList.size() > 0;
+        assert deliverymanList.size() == 0;
     }
 }
