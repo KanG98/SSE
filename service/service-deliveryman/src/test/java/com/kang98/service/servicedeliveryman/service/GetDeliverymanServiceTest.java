@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,13 +24,24 @@ public class GetDeliverymanServiceTest {
     private GetDeliverymanService getDeliverymanService;
 
     @Test
-    void getAllProducts_callMethod_expectedDeliverymenList() {
+    void getAllDeliveryman_callMethod_expectedDeliverymenList() {
         Deliveryman mockDeliveryman = Deliveryman.builder().id("id").build();
         when(deliverymenRepository.findAll()).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliverymen list",
                 () -> assertEquals(getDeliverymanService.getAllProducts(), Arrays.asList(mockDeliveryman)),
                 () -> verify(deliverymenRepository, times(1)).findAll()
+        );
+    }
+
+    @Test
+    void getDeliverymanByPhoneNumber_callMethod_expectedDeliverymenList() {
+        Deliveryman mockDeliveryman = Deliveryman.builder().phoneNumber("123").build();
+        when(deliverymenRepository.findAllByPhoneNumber(anyString())).thenReturn(Arrays.asList(mockDeliveryman));
+
+        assertAll("Get deliveryman by phone number",
+                () -> assertEquals(getDeliverymanService.getAllProductsByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
+                () -> verify(deliverymenRepository, times(1)).findAllByPhoneNumber(anyString())
         );
     }
 }

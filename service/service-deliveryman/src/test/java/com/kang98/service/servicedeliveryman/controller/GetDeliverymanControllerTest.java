@@ -1,7 +1,6 @@
 package com.kang98.service.servicedeliveryman.controller;
 
 import com.kang98.data.datadeliveryman.entity.Deliveryman;
-import com.kang98.data.datadeliveryman.repository.DeliverymenRepository;
 import com.kang98.service.servicedeliveryman.service.GetDeliverymanService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,13 +23,24 @@ public class GetDeliverymanControllerTest {
     private GetDeliverymenController getDeliverymenController;
 
     @Test
-    void getAllProducts_callMethod_expectedDeliverymenList() {
+    void getAllDeliverymen_callMethod_expectedDeliverymenList() {
         Deliveryman mockDeliveryman = Deliveryman.builder().id("id").build();
         when(getDeliverymanService.getAllProducts()).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliverymen list",
                 () -> assertEquals(getDeliverymanService.getAllProducts(), Arrays.asList(mockDeliveryman)),
                 () -> verify(getDeliverymanService, times(1)).getAllProducts()
+        );
+    }
+
+    @Test
+    void getDeliverymanByPhoneNumber_callMethod_expectedDeliverymenList() {
+        Deliveryman mockDeliveryman = Deliveryman.builder().phoneNumber("123").build();
+        when(getDeliverymanService.getAllProductsByPhoneNumber(anyString())).thenReturn(Arrays.asList(mockDeliveryman));
+
+        assertAll("Get deliveryman by phone number",
+                () -> assertEquals(getDeliverymanService.getAllProductsByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
+                () -> verify(getDeliverymanService, times(1)).getAllProductsByPhoneNumber(anyString())
         );
     }
 }
