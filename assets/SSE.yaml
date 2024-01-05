@@ -18,7 +18,7 @@ tags:
   - name: Deliveryman
     description: Deliveryman service endpoints. localhost:8083
   - name: Shipment
-    description: Shipment service endpoints. localhost:8083
+    description: Shipment service endpoints. localhost:8084
   - name: Location
     description: Location service endpoints. ws://localhost:9090
 paths:

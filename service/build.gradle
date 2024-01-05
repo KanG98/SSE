@@ -13,6 +13,7 @@ dependencies {
     project('service-auth')
     project('service-product')
     project('service-order')
+    project('service-shipment')
 }
 
 test {

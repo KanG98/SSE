@@ -34,6 +34,12 @@ dependencies {
     // jpa
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.2.0'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+    // other packages
+    implementation project(':foundation')
+    implementation project(':data:auth')
+    implementation project(':data:shipment')
+    implementation project(':service:service-auth')
 }
 
 test {
