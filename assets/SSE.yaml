@@ -17,6 +17,8 @@ tags:
     description: Order service endpoints. localhost:8082
   - name: Deliveryman
     description: Deliveryman service endpoints. localhost:8083
+  - name: Shipment
+    description: Shipment service endpoints. localhost:8083
   - name: Location
     description: Location service endpoints. ws://localhost:9090
 paths:
@@ -378,6 +380,28 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
+  /shipments/all:
+    post:
+      tags:
+        - Shipment
+      summary: "Show all shipments."
+      description: "Shows all shipment."
+      responses:
+        200:
+          description: "Successful response"
+          examples:
+            application/json: [
+              {
+                "order_id": "3",
+                "deliveryman_id": ["1", "2"],
+                "current_location": "123.32, 42.23"
+              }
+            ]
+        403:
+          description: "Forbidden. Bad credential"
+        500:
+          description: "Internal server error"
+
   /deliverymen/by-phone-number:
     post:
       tags:
