@@ -503,9 +503,7 @@ paths:
                 example: "3"
               deliverymanId:
                 type: string
-                items:
-                  type: string
-                  example: "1"
+                example: "1"
               assignedDate:
                 type: string
                 example: "2023-01-01T08:00:00Z"
