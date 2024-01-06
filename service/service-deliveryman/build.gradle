@@ -43,10 +43,3 @@ dependencies {
     implementation project(':data:deliveryman')
     implementation project(':service:service-auth')
 }
-
-test {
-    useJUnitPlatform()
-//    exclude "**/web/**"
-//    exclude "**/client/**"
-//    exclude "**/IT/**"
-}

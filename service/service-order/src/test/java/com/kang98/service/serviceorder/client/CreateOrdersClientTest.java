@@ -68,7 +68,7 @@ public class CreateOrdersClientTest {
     }
 
     @Test
-    void testCreateOrderHttpPost_expectedInvalidRequest() throws IOException, URISyntaxException {
+    void testCreateOrderHttpPost_expectedInvalidRequest() throws URISyntaxException {
         final String baseUrl = "http://localhost:" + port + "/orders";
 
         CreateOrdersRequest createOrdersRequest = CreateOrdersRequest.builder().build();
@@ -80,6 +80,35 @@ public class CreateOrdersClientTest {
         ResponseEntity<Void> response =
                 testRestTemplate.postForEntity(location, entity, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    void testGetOrdersHttpPost_expectedSuccess() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + port + "/orders/all";
+
+        URI location = new URI(baseUrl);
+
+        String token = jwtToken.getToken(username, password);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity<Void> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<Void> response =
+                testRestTemplate.postForEntity(location, entity, Void.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    void testGetOrdersHttpPost_expectedForbidden() throws URISyntaxException {
+        final String baseUrl = "http://localhost:" + port + "/orders/all";
+
+        URI location = new URI(baseUrl);
+
+        HttpEntity<Void> entity = new HttpEntity<>(null, null);
+
+        ResponseEntity<Void> response =
+                testRestTemplate.postForEntity(location, entity, Void.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FORBIDDEN);
     }
 
 }

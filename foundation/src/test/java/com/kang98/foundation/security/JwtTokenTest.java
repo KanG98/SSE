@@ -14,11 +14,11 @@ public class JwtTokenTest {
     private final String password = System.getProperty("JWTPWD");
 
 //    need to link with vault
-    @Test
-    void testProductAllHttpPost_expectedSuccess() throws URISyntaxException {
-        JwtToken jwtToken = new JwtToken();
-        String token = jwtToken.getToken(username, password);
-        assertThat(token).isNotNull();
-        assertThat(token.length() > 10);
-    }
+//    @Test
+//    void testProductAllHttpPost_expectedSuccess() throws URISyntaxException {
+//        JwtToken jwtToken = new JwtToken();
+//        String token = jwtToken.getToken(username, password);
+//        assertThat(token).isNotNull();
+//        assertThat(token.length() > 10);
+//    }
 }

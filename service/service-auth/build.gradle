@@ -40,10 +40,3 @@ dependencies {
     implementation project(':data:auth')
     implementation project(':foundation')
 }
-
-test {
-    useJUnitPlatform()
-    exclude "**/web/**"
-    exclude "**/client/**"
-    exclude "**/IT/**"
-}

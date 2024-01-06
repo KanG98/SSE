@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
 @Import(OrderServiceTestConfig.class)
-@Disabled
+//@Disabled
 public class CreateOrdersWebTest {
 
     @Autowired
@@ -81,5 +81,19 @@ public class CreateOrdersWebTest {
                         .content(JSON_STRING)
                 )
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetOrdersHttpPost_expectedSuccess() throws Exception {
+        mockMvc.perform(post("/orders/all")
+                        .header("authorization", "Bearer " + getToken())
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void testGetOrdersHttpPost_expectedForbidden() throws Exception {
+        mockMvc.perform(post("/orders/all"))
+                .andExpect(status().isForbidden());
     }
 }

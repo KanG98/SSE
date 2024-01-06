@@ -67,10 +67,3 @@ jar {
         )
     }
 }
-
-test {
-    useJUnitPlatform()
-    exclude "**/web/**"
-    exclude "**/client/**"
-    exclude "**/IT/**"
-}

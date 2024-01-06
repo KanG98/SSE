@@ -14,10 +14,14 @@ dependencies {
     project('service-product')
     project('service-order')
     project('service-shipment')
+    project('service-deliveryman')
 }
 
-test {
-    useJUnitPlatform()
-    exclude "**/web/**"
-    exclude "**/client/**"
+subprojects {
+    test {
+        useJUnitPlatform()
+        exclude "**/web/**"
+        exclude "**/client/**"
+        exclude "**/IT/**"
+    }
 }

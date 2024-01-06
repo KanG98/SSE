@@ -12,10 +12,11 @@ import javax.sql.DataSource;
 
 @Configuration
 @Import(ProductServiceConfig.class)
-@PropertySource("classpath:/local.properties")
-@ComponentScan("com.kang98.data.dataauth")
-@EntityScan("com.kang98.data.dataauth.entity")
-//@AutoConfigureDataMongo
+@PropertySource("classpath:/application.properties")
+//@ComponentScan({"com.kang98.data.dataauth", "com.kang98.service.serviceproduct"})
+@ComponentScan({"com.kang98.service.serviceproduct"})
+//@EntityScan("com.kang98.data.dataauth.entity")
+@AutoConfigureDataMongo
 public class ProductServiceTestConfig {
     public static final String TEST_GET_PRODUCTS_RESPONSE = "/get-products-service-response.json";
 
@@ -23,17 +24,17 @@ public class ProductServiceTestConfig {
 
     public static final String TEST_GET_ALL_PRODUCTS_RESPONSE = "/get-all-products-service-response.json";
 
-//    @Bean
-//    public DataSource dataSource() {
-//
-//        return DataSourceBuilder
-//                .create()
-//                .url("jdbc:mysql://localhost:3306/sse_users")
-//                .username("root")
-//                .password(null)
-//                .driverClassName("com.mysql.cj.jdbc.Driver")
-//                .build();
-//    }
+    @Bean
+    public DataSource dataSource() {
+
+        return DataSourceBuilder
+                .create()
+                .url("jdbc:mysql://localhost:3306/sse_users")
+                .username("root")
+                .password(null)
+                .driverClassName("com.mysql.cj.jdbc.Driver")
+                .build();
+    }
 
     @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {

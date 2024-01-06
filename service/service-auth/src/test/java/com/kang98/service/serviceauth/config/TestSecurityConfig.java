@@ -30,17 +30,17 @@ public class TestSecurityConfig {
     @Autowired
     private Environment env;
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("SPRING_DATASOURCE_DRIVER_CLASS_NAME"));
-        dataSource.setUrl(env.getProperty("SPRING_DATASOURCE_URL"));
-        dataSource.setUsername(env.getProperty("SPRING_DATASOURCE_USERNAME"));
-        dataSource.setPassword(env.getProperty("SPRING_DATASOURCE_PASSWORD"));
-        System.out.println(dataSource.getUrl());
-        System.out.println(dataSource.getConnectionProperties());
-        System.out.println(dataSource.getUsername());
-        System.out.println(dataSource.getPassword());
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(env.getProperty("SPRING_DATASOURCE_DRIVER_CLASS_NAME"));
+//        dataSource.setUrl(env.getProperty("SPRING_DATASOURCE_URL"));
+//        dataSource.setUsername(env.getProperty("SPRING_DATASOURCE_USERNAME"));
+//        dataSource.setPassword(env.getProperty("SPRING_DATASOURCE_PASSWORD"));
+//        System.out.println(dataSource.getUrl());
+//        System.out.println(dataSource.getConnectionProperties());
+//        System.out.println(dataSource.getUsername());
+//        System.out.println(dataSource.getPassword());
+//        return dataSource;
+//    }
 }
