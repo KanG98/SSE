@@ -22,13 +22,13 @@ public class GetDeliverymenController {
     @PostMapping("/deliveryman/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Deliveryman> getAllDeliveryman() {
-        return getDeliverymanService.getAllProducts();
+        return getDeliverymanService.getAllDeliverymen();
     }
 
     @PostMapping("/deliveryman/by-phone-number")
     @ResponseStatus(HttpStatus.OK)
     public List<Deliveryman> getDeliverymanByPhoneNumber(@RequestBody @Valid GetDeliverymanByPhoneNumberRequest getDeliverymanByPhoneNumberRequest) {
-        return getDeliverymanService.getAllProductsByPhoneNumber(getDeliverymanByPhoneNumberRequest.getPhoneNumber());
+        return getDeliverymanService.getAllDeliverymanByPhoneNumber(getDeliverymanByPhoneNumberRequest.getPhoneNumber());
     }
 
 }

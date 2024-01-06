@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan({"com.kang98.foundation.handler"})
+@ComponentScan({"com.kang98.foundation.handler", "com.kang98.service.servicedeliveryman"})
 @Import(DeliverymanSecurityConfig.class)
 public class DeliverymanServiceConfig {
     @Bean

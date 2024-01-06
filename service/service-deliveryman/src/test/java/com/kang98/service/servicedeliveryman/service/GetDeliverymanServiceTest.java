@@ -29,7 +29,7 @@ public class GetDeliverymanServiceTest {
         when(deliverymenRepository.findAll()).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliverymen list",
-                () -> assertEquals(getDeliverymanService.getAllProducts(), Arrays.asList(mockDeliveryman)),
+                () -> assertEquals(getDeliverymanService.getAllDeliverymen(), Arrays.asList(mockDeliveryman)),
                 () -> verify(deliverymenRepository, times(1)).findAll()
         );
     }
@@ -40,7 +40,7 @@ public class GetDeliverymanServiceTest {
         when(deliverymenRepository.findAllByPhoneNumber(anyString())).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliveryman by phone number",
-                () -> assertEquals(getDeliverymanService.getAllProductsByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
+                () -> assertEquals(getDeliverymanService.getAllDeliverymanByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
                 () -> verify(deliverymenRepository, times(1)).findAllByPhoneNumber(anyString())
         );
     }

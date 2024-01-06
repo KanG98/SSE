@@ -25,22 +25,22 @@ public class GetDeliverymanControllerTest {
     @Test
     void getAllDeliverymen_callMethod_expectedDeliverymenList() {
         Deliveryman mockDeliveryman = Deliveryman.builder().id("id").build();
-        when(getDeliverymanService.getAllProducts()).thenReturn(Arrays.asList(mockDeliveryman));
+        when(getDeliverymanService.getAllDeliverymen()).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliverymen list",
-                () -> assertEquals(getDeliverymanService.getAllProducts(), Arrays.asList(mockDeliveryman)),
-                () -> verify(getDeliverymanService, times(1)).getAllProducts()
+                () -> assertEquals(getDeliverymanService.getAllDeliverymen(), Arrays.asList(mockDeliveryman)),
+                () -> verify(getDeliverymanService, times(1)).getAllDeliverymen()
         );
     }
 
     @Test
     void getDeliverymanByPhoneNumber_callMethod_expectedDeliverymenList() {
         Deliveryman mockDeliveryman = Deliveryman.builder().phoneNumber("123").build();
-        when(getDeliverymanService.getAllProductsByPhoneNumber(anyString())).thenReturn(Arrays.asList(mockDeliveryman));
+        when(getDeliverymanService.getAllDeliverymanByPhoneNumber(anyString())).thenReturn(Arrays.asList(mockDeliveryman));
 
         assertAll("Get deliveryman by phone number",
-                () -> assertEquals(getDeliverymanService.getAllProductsByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
-                () -> verify(getDeliverymanService, times(1)).getAllProductsByPhoneNumber(anyString())
+                () -> assertEquals(getDeliverymanService.getAllDeliverymanByPhoneNumber("123"), Arrays.asList(mockDeliveryman)),
+                () -> verify(getDeliverymanService, times(1)).getAllDeliverymanByPhoneNumber(anyString())
         );
     }
 }

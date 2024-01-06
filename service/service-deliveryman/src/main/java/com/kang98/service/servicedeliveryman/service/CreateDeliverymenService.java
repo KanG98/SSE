@@ -14,7 +14,7 @@ public class CreateDeliverymenService {
         this.deliverymenRepository = deliverymenRepository;
     }
 
-    public void createDeliveryman(Deliveryman deliveryman) {
-        deliverymenRepository.save(deliveryman);
+    public Deliveryman createDeliveryman(Deliveryman deliveryman) {
+        return deliverymenRepository.save(deliveryman);
     }
 }

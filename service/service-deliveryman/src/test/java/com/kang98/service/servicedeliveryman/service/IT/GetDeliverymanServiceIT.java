@@ -16,19 +16,19 @@ public class GetDeliverymanServiceIT {
 
     @Test
     void getAllDeliverymen_callMethod_expectedDeliverymenList() {
-        List<Deliveryman> deliverymanList = getDeliverymanService.getAllProducts();
+        List<Deliveryman> deliverymanList = getDeliverymanService.getAllDeliverymen();
         assert deliverymanList.size() > 0;
     }
 
     @Test
     void getDeliverymanByPhoneNumber_callMethod_expectedDeliverymenList() {
-        List<Deliveryman> deliverymanList = getDeliverymanService.getAllProductsByPhoneNumber("+1234567890");
+        List<Deliveryman> deliverymanList = getDeliverymanService.getAllDeliverymanByPhoneNumber("+1234567890");
         assert deliverymanList.size() > 0;
     }
 
     @Test
     void getDeliverymanByPhoneNumber_callMethod_expectedEmptyDeliverymenList() {
-        List<Deliveryman> deliverymanList = getDeliverymanService.getAllProductsByPhoneNumber("not in db");
+        List<Deliveryman> deliverymanList = getDeliverymanService.getAllDeliverymanByPhoneNumber("not in db");
         assert deliverymanList.size() == 0;
     }
 }

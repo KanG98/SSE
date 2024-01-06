@@ -13,11 +13,11 @@ public class GetDeliverymanService {
     @Autowired
     private DeliverymenRepository deliverymenRepository;
 
-    public List<Deliveryman> getAllProducts() {
+    public List<Deliveryman> getAllDeliverymen() {
         return deliverymenRepository.findAll();
     }
 
-    public List<Deliveryman> getAllProductsByPhoneNumber(String phoneNumber) {
+    public List<Deliveryman> getAllDeliverymanByPhoneNumber(String phoneNumber) {
         return deliverymenRepository.findAllByPhoneNumber(phoneNumber);
     }
 }

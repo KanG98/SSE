@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 @Builder
 @Data
 public class CreateDeliverymanRequest {
@@ -24,4 +26,8 @@ public class CreateDeliverymanRequest {
     @NotNull
     @Field("email")
     private String email;
+
+    @NotNull
+    @Field("since_date")
+    private Date sinceDate;
 }
