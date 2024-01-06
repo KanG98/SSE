@@ -2,22 +2,25 @@ package com.kang98.service.serviceorder.service;
 
 import com.kang98.data.dataorder.entity.Order;
 import com.kang98.data.dataorder.repository.OrdersRepository;
-import lombok.RequiredArgsConstructor;
+import com.kang98.service.serviceorder.dto.GetOrdersResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CreateOrdersService {
+public class GetOrdersService {
 
-    private final OrdersRepository ordersRepository;
+    private OrdersRepository ordersRepository;
+
     @Autowired
-    CreateOrdersService(OrdersRepository ordersRepository) {
+    GetOrdersService(OrdersRepository ordersRepository) {
         this.ordersRepository = ordersRepository;
     }
 
-    public Order createOrder(Order order) {
-        return ordersRepository.save(order);
+    public List<Order> getAllOrders() {
+        return ordersRepository.findAll();
     }
+
 }
