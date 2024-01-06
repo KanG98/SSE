@@ -30,4 +30,7 @@ public class CreateDeliverymanRequest {
     @NotNull
     @Field("since_date")
     private Date sinceDate;
+
+    @Field("current_location")
+    private String currentLocation;
 }

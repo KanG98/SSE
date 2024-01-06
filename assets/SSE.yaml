@@ -387,7 +387,7 @@ paths:
       responses:
         200:
           description: "location"
-  /deliveryman:
+  /deliverymen:
     post:
       tags:
         - Deliveryman
@@ -480,6 +480,53 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
+  
+  /shipments:
+    post:
+      tags:
+        - "Shipment"
+      summary: "Create a new shipment"
+      description: "Create a new shipment"
+      parameters:
+        - name: createShipmentRequest
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - orderId
+              - deliverymanId
+              - assignedDate
+            properties:
+              orderId:
+                type: string
+                example: "3"
+              deliverymanId:
+                type: string
+                items:
+                  type: string
+                  example: "1"
+              assignedDate:
+                type: string
+                example: "2023-01-01T08:00:00Z"
+      responses:
+        201:
+          description: "Successful response"
+        400:
+          description: "Invalid request"
+          examples:
+            application/json:
+              {
+                "type": "about:blank",
+                "title": "Bad Request",
+                "status": 400,
+                "detail": "Invalid request content.",
+                "instance": "/shipments"
+              }
+        403:
+          description: "Forbidden. Bad credential"
+        500:
+          description: "Internal server error"
   /shipments/all:
     post:
       tags:
@@ -501,6 +548,10 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
+
+
+
+
 
   /deliverymen/by-phone-number:
     post:

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class GetShipmentsController {
 
     @PostMapping("/shipments/all")
     public GetShipmentsResponse getAllShipments() {
+        log.info("Get all shipments called at time: " + System.currentTimeMillis());
         return GetShipmentsResponse.builder().shipmentList(getShipmentsService.getAllShipments()).build();
     }
 }
