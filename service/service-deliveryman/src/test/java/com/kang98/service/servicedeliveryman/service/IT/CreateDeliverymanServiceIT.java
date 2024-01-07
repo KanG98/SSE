@@ -24,17 +24,10 @@ public class CreateDeliverymanServiceIT {
     @Autowired
     private DeliverymenRepository deliverymenRepository;
 
-    private static Date date = new Date();
-
-    @BeforeAll
-    static void setUp() {
-        date.setTime(System.currentTimeMillis());
-    }
-
     @Test
     void createDeliverymen_callMethod_expectedSuccess() {
-        Deliveryman deliveryman = createDeliverymenService.createDeliveryman(Deliveryman.builder().sinceDate(date).build());
-        assert getDeliverymanService.getAllDeliverymen().stream().anyMatch(dm -> dm.getSinceDate().equals(date)) == true;
+        Deliveryman deliveryman = createDeliverymenService.createDeliveryman(Deliveryman.builder().email("IT").build());
+        assert getDeliverymanService.getAllDeliverymen().stream().anyMatch(dm -> dm.getEmail().equals("IT")) == true;
         deliverymenRepository.delete(deliveryman);
     }
 

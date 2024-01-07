@@ -25,7 +25,7 @@ public class GetOrdersServiceTest {
 
     @Test
     void getAllProducts_callMethod_expectedReadProductsResponse() {
-        Order mockOrder = Order.builder().id("id").build();
+        Order mockOrder = Order.builder().customerId("id").build();
         when(ordersRepository.findAll()).thenReturn(Arrays.asList(mockOrder));
         assertAll("Get all orders",
                 () -> assertEquals(getOrdersService.getAllOrders(), Arrays.asList(mockOrder)),

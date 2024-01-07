@@ -14,6 +14,9 @@ public interface DeliverymenRepository extends MongoRepository<Deliveryman, Stri
     List<Deliveryman> findAllByPhoneNumber(String phoneNumber);
 
     // this is mainly for testing purposes
+    @Query(value = "{'email': ?0}", delete = true)
+    void deleteByEmail(String email);
+
     @Query(value = "{'since_date': ?0}", delete = true)
     void deleteBySinceDate(Date sinceDate);
 }

@@ -18,8 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @Document(collection = "orders")
 public class Order {
-    @Id
-    private String id;
 
     @Field("customer_id")
     private String customerId;

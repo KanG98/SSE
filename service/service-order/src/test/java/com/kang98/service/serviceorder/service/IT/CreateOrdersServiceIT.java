@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class CreateOrdersServiceIT {
     @Autowired
@@ -24,23 +26,17 @@ public class CreateOrdersServiceIT {
 
     @Autowired
     private OrdersRepository ordersRepository;
-    private static Date date = new Date();
-
-    @BeforeAll
-    static void init() {
-        date.setTime(System.currentTimeMillis());
-    }
 
     @Test
     void createOrder_callMethod_expectedOrderCreated() {
 
-        Order mockOrder = Order.builder().scheduledDelivery(date).build();
+        Order mockOrder = Order.builder().customerId("IT").build();
         Order createdOrder = createOrdersService.createOrder(mockOrder);
 
-
+        assertEquals(createdOrder.getCustomerId(), mockOrder.getCustomerId());
         Stream<Order> orders = getOrdersService.getAllOrders().stream();
-        assert orders.anyMatch(order -> order.getScheduledDelivery().equals(date));
+        assert orders.anyMatch(order -> order.getCustomerId().equals("IT"));
 
-        ordersRepository.delete(createdOrder);
+        ordersRepository.deleteByCustomerId(createdOrder.getCustomerId());
     }
 }

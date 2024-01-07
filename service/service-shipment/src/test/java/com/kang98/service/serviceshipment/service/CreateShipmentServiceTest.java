@@ -8,30 +8,27 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class GetShipmentServiceTest {
+public class CreateShipmentServiceTest {
 
     @Mock
     private ShipmentsRepository shipmentsRepository;
 
     @InjectMocks
-    private GetShipmentsService getShipmentsService;
+    private CreateShipmentService createShipmentService;
 
     @Test
-    void getAllShipments_callMethod_expectedShipmentList() {
-        Shipment mockShipment = Shipment.builder().orderId("id").build();
-        when(shipmentsRepository.findAll()).thenReturn(Arrays.asList(mockShipment));
-
-        assertAll("Get all shipments list",
-                () -> assertEquals(getShipmentsService.getAllShipments(), Arrays.asList(mockShipment)),
-                () -> verify(shipmentsRepository, times(1)).findAll()
+    void createShipment_callMethod_expectedSuccess() {
+        Shipment mockShipment = Shipment.builder().orderId("0").build();
+        when(shipmentsRepository.save(any(Shipment.class))).thenReturn(mockShipment);
+        assertAll("Create shipment",
+                () -> assertEquals(createShipmentService.createShipment(mockShipment), mockShipment),
+                () -> verify(shipmentsRepository, times(1)).save(any(Shipment.class))
         );
     }
-
 }

@@ -26,7 +26,7 @@ public class GetShipmentControllerTest {
 
     @Test
     void getAllShipments_callMethod_expectedShipmentList() {
-        Shipment mockShipment = Shipment.builder().id("id").build();
+        Shipment mockShipment = Shipment.builder().orderId("id").build();
         when(getShipmentsService.getAllShipments()).thenReturn(Arrays.asList(mockShipment));
 
         GetShipmentsResponse getShipmentsResponse = GetShipmentsResponse.builder().shipmentList(Arrays.asList(mockShipment)).build();

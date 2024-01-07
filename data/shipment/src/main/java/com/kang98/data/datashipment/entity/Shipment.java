@@ -18,9 +18,6 @@ import java.util.List;
 @Document(collection = "shipments")
 public class Shipment {
 
-    @Id
-    private String id;
-
     @Field("order_id")
     private String orderId;
 

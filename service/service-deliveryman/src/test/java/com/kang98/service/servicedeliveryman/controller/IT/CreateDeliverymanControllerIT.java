@@ -22,18 +22,11 @@ public class CreateDeliverymanControllerIT {
     @Autowired
     private DeliverymenRepository deliverymenRepository;
 
-    private static Date date = new Date();
-
-    @BeforeAll
-    static void setUp() {
-        date.setTime(System.currentTimeMillis());
-    }
-
     @Test
     void createDeliveryman_callMethod_expectedSuccess() {
-        CreateDeliverymanRequest createDeliverymanRequest = CreateDeliverymanRequest.builder().sinceDate(date).build();
+        CreateDeliverymanRequest createDeliverymanRequest = CreateDeliverymanRequest.builder().email("IT").build();
         createDeliverymanController.createDeliveryman(createDeliverymanRequest);
-        assert deliverymenRepository.findAll().stream().anyMatch(dm -> dm.getSinceDate().equals(date)) == true;
-        deliverymenRepository.deleteBySinceDate(date);
+        assert deliverymenRepository.findAll().stream().anyMatch(dm -> dm.getEmail().equals("IT")) == true;
+        deliverymenRepository.deleteByEmail("IT");
     }
 }
