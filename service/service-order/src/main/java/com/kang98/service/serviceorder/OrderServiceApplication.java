@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@EnableMongoRepositories("com.kang98.data.dataorder.repository")
+@EnableMongoRepositories({"com.kang98.data.dataorder.repository",
+        "com.kang98.data.datadeliveryman.repository",
+        "com.kang98.data.datashipment.repository"})
 @EnableJpaRepositories("com.kang98.data.dataauth.repository")
 public class OrderServiceApplication {
 

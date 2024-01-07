@@ -349,6 +349,46 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
+
+  /orders/statuses/by-order-id:
+    post:
+      tags:
+        - Order
+      summary: "Show order status with order id."
+      description: "Shows order status with order id."
+      parameters:
+        - name: getOrdersStatusesRequest
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - orderId
+            properties:
+              orderId:
+                type: string
+            example:
+              orderId: "5f90c393a380afd5cf0bdd1c"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            example:
+              onTheWay:
+                  order_id: "5f90c393a380afd5cf0bdd1c"
+                  order_status: "On the way"
+                  current_location: "123.32, 42.23"
+                  status_date: "2023-01-01T08:00:00Z"
+                  deliveryman_id: "32049231jf80afd5cf0bdd1e"
+              delivered:
+                  order_id: "5f90c393a380afd5cf0bdd1c"
+                  order_status: "Delivered"
+                  current_location: "None"
+                  status_date: "2023-01-01T08:00:00Z"
+                  deliveryman_id: "None"
+        204:
+          description: "Order not found"
+
   /ws://localhost:9090/dm/{dmId}:
     post:
 
@@ -546,10 +586,6 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
-
-
-
-
 
   /deliverymen/by-phone-number:
     post:

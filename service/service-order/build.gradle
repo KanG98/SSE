@@ -51,6 +51,8 @@ dependencies {
     implementation project(':data:auth')
     implementation project(':data:order')
     implementation project(':data:product')
+    implementation project(':data:shipment')
+    implementation project(':data:deliveryman')
     implementation project(':service:service-auth')
 }
 
