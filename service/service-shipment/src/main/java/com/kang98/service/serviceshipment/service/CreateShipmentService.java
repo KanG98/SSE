@@ -30,6 +30,7 @@ public class CreateShipmentService {
             shipmentInDB.get().setAssignedDate(shipment.getAssignedDate());
             // update database
             shipmentsRepository.deleteByOrderId(shipment.getOrderId());
+            // todo: update order status to on-the-way
             return shipmentsRepository.save(shipmentInDB.get());
         } else {
             Shipment newShipment = Shipment.builder()
