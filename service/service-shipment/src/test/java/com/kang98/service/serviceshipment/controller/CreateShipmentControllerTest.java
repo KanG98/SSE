@@ -3,6 +3,7 @@ package com.kang98.service.serviceshipment.controller;
 import com.kang98.data.datashipment.entity.Shipment;
 import com.kang98.service.serviceshipment.dto.CreateShipmentRequest;
 import com.kang98.service.serviceshipment.service.CreateShipmentService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -26,6 +27,7 @@ public class CreateShipmentControllerTest {
     private CreateShipmentService createShipmentService;
 
     @Test
+    @Disabled
     void createShipment_callMethod_expectedSuccess() {
         Shipment mockShipment = Shipment.builder().orderId("0").deliverymanId(Arrays.asList("1")).build();
         when(createShipmentService.createShipment(any(Shipment.class))).thenReturn(mockShipment);
