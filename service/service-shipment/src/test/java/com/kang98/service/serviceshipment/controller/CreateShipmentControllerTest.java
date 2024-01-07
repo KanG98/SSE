@@ -5,11 +5,10 @@ import com.kang98.service.serviceshipment.dto.CreateShipmentRequest;
 import com.kang98.service.serviceshipment.service.CreateShipmentService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class CreateShipmentControllerTest {
 
     @InjectMocks
@@ -27,7 +26,6 @@ public class CreateShipmentControllerTest {
     private CreateShipmentService createShipmentService;
 
     @Test
-    @Disabled
     void createShipment_callMethod_expectedSuccess() {
         Shipment mockShipment = Shipment.builder().orderId("0").deliverymanId(Arrays.asList("1")).build();
         when(createShipmentService.createShipment(any(Shipment.class))).thenReturn(mockShipment);
