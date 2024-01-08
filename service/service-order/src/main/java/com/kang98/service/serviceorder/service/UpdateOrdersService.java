@@ -7,14 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateOrdersService {
     private final OrderRepositoryImpl orderRepository;
-    private final MongoTemplate mongoTemplate;
 
-    public UpdateOrdersService(OrderRepositoryImpl orderRepository, MongoTemplate mongoTemplate) {
+    public UpdateOrdersService(OrderRepositoryImpl orderRepository) {
         this.orderRepository = orderRepository;
-        this.mongoTemplate = mongoTemplate;
     }
 
     public boolean updateOrderStatus(String orderId, String orderStatus) {
-        return orderRepository.updateOrderStatus(mongoTemplate, orderId, orderStatus);
+        return orderRepository.updateOrderStatus(orderId, orderStatus);
     }
 }
