@@ -349,6 +349,54 @@ paths:
           description: "Forbidden. Bad credential"
         500:
           description: "Internal server error"
+  /orders/statuses:
+    post:
+      tags:
+        - Order
+      summary: "Update order status."
+      description: "Update order status."
+      parameters:
+        - name: UpdateOrderStatusRequest
+          in: body
+          required: true
+          schema:
+            type: object
+            required:
+              - orderId
+              - orderStatus
+            properties:
+              orderId:
+                type: string
+                example: "5f90c393a380afd5cf0bdd1c"
+              orderStatus:
+                type: string
+                example: "Delivered"
+      responses:
+        200:
+          description: "Successful response"
+          examples:
+            application/json: 
+              { 
+                "dbAcknowledgement": true,
+                "updatedAt": "2024-01-08T19:48:07.204326Z"
+              }
+        204:
+          description: "Order not found"
+        400:
+          description: "Invalid request"
+          examples:
+            application/json:
+              {
+                "type": "about:blank",
+                "title": "Bad Request",
+                "status": 400,
+                "detail": "Invalid request content.",
+                "instance": "/orders/statuses"
+              }
+        403:
+          description: "Forbidden. Bad credential"
+        500:
+          description: "Internal server error"
 
   /orders/statuses/by-order-id:
     post:

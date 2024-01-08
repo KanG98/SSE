@@ -68,7 +68,7 @@ public class GetOrdersService {
 
     public OrderStatus getOrdersStatusesByOrderId(String orderId) {
         String orderStatus = getOrderStatusByOrderId(orderId);
-        String statusDate = Helpers.getCurrentDate();
+        String statusDate = Helpers.getCurrentISODate();
         String deliverymanId = getDeliverymanIdByOrderId(orderId);
         String currentLocation = getCurrentLocationByDeliverymanId(deliverymanId);
 

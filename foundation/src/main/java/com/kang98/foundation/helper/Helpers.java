@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Helpers {
 
-    public static String getCurrentDate() {
+    public static String getCurrentISODate() {
         ZonedDateTime now = ZonedDateTime.now();
         String isoTime = now.format(DateTimeFormatter.ISO_INSTANT);
         return isoTime;

@@ -30,6 +30,4 @@ public class CreateOrdersController {
         Order newOrder = modelMapper.map(createOrdersRequest, Order.class);
         createOrdersService.createOrder(newOrder);
     }
-
-
 }
