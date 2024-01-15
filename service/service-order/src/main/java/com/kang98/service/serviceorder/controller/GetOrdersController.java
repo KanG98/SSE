@@ -1,7 +1,6 @@
 package com.kang98.service.serviceorder.controller;
 
 import com.kang98.data.dataorder.entity.OrderStatus;
-import com.kang98.data.dataorder.repository.OrderRepositoryImpl;
 import com.kang98.service.serviceorder.dto.GetOrdersResponse;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesRequest;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesResponse;
@@ -10,7 +9,6 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,8 +36,6 @@ public class GetOrdersController {
         GetOrdersResponse getOrdersResponse = GetOrdersResponse.builder()
                 .orders(getOrdersService.getAllOrders())
                 .build();
-
-//        orderRepository.updateOrderStatus(mongoTemplate, "659a19bf2cf5f258b469dccc", "on-the-way");
 
         return getOrdersResponse;
     }

@@ -1,14 +1,13 @@
 package com.kang98.service.serviceorder.service;
 
-import com.kang98.data.dataorder.repository.OrderRepositoryImpl;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import com.kang98.data.dataorder.repository.OrdersRepositoryImpl;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UpdateOrdersService {
-    private final OrderRepositoryImpl orderRepository;
+    private final OrdersRepositoryImpl orderRepository;
 
-    public UpdateOrdersService(OrderRepositoryImpl orderRepository) {
+    public UpdateOrdersService(OrdersRepositoryImpl orderRepository) {
         this.orderRepository = orderRepository;
     }
 
