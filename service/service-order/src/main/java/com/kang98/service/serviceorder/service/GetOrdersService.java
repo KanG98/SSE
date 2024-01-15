@@ -3,18 +3,15 @@ package com.kang98.service.serviceorder.service;
 import com.kang98.data.datadeliveryman.entity.Deliveryman;
 import com.kang98.data.datadeliveryman.repository.DeliverymenRepository;
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataorder.entity.OrderStatus;
+import com.kang98.data.dataorder.entity.OrderStatusDetail;
 import com.kang98.data.dataorder.repository.OrdersRepository;
 import com.kang98.data.datashipment.entity.Shipment;
 import com.kang98.data.datashipment.repository.ShipmentsRepository;
 import com.kang98.foundation.helper.Helpers;
-import com.kang98.service.serviceorder.dto.GetOrdersResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,25 +51,28 @@ public class GetOrdersService {
         }
         List<String> deliverymanList = shipment.get().getDeliverymanId();
         // return the most recent assigned deliveryman in the list
+        if(deliverymanList == null || deliverymanList.size() == 0) {
+            return "no-deliveryman-assigned";
+        }
         return deliverymanList.get(deliverymanList.size() - 1);
     }
 
     public String getCurrentLocationByDeliverymanId(String deliverymanId) {
         log.info("get Current location by deliverymanId: {}", deliverymanId);
-        Optional<Deliveryman> deliveryman = deliverymenRepository.findById(deliverymanId);
+        var deliveryman = deliverymenRepository.findById(deliverymanId);
         if(!deliveryman.isPresent()) {
             return "no-location-available";
         }
         return deliveryman.get().getCurrentLocation();
     }
 
-    public OrderStatus getOrdersStatusesByOrderId(String orderId) {
+    public OrderStatusDetail getOrdersStatusDetailsByOrderId(String orderId) {
         String orderStatus = getOrderStatusByOrderId(orderId);
         String statusDate = Helpers.getCurrentISODate();
         String deliverymanId = getDeliverymanIdByOrderId(orderId);
         String currentLocation = getCurrentLocationByDeliverymanId(deliverymanId);
 
-        return OrderStatus.builder()
+        return OrderStatusDetail.builder()
                 .orderId(orderId)
                 .orderStatus(orderStatus)
                 .statusDate(statusDate)

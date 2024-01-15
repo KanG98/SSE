@@ -27,11 +27,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class AuthServiceConfig {
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new UserInfoUserDetailService();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -46,6 +41,11 @@ public class AuthServiceConfig {
     }
 
     @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
@@ -54,7 +54,8 @@ public class AuthServiceConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public UserDetailsService userDetailsService() {
+        return new UserInfoUserDetailService();
     }
+
 }

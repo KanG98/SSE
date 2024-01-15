@@ -1,8 +1,12 @@
 package com.kang98.service.serviceorder.service;
 
+import com.kang98.data.datadeliveryman.entity.Deliveryman;
+import com.kang98.data.datadeliveryman.repository.DeliverymenRepository;
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataorder.entity.OrderStatus;
+import com.kang98.data.dataorder.entity.OrderStatusDetail;
 import com.kang98.data.dataorder.repository.OrdersRepository;
+import com.kang98.data.datashipment.entity.Shipment;
+import com.kang98.data.datashipment.repository.ShipmentsRepository;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesRequest;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesResponse;
 import org.junit.jupiter.api.Test;
@@ -12,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,6 +27,12 @@ public class GetOrdersServiceTest {
 
     @Mock
     private OrdersRepository ordersRepository;
+
+    @Mock
+    private ShipmentsRepository shipmentsRepository;
+
+    @Mock
+    private DeliverymenRepository deliverymenRepository;
 
     @InjectMocks
     private GetOrdersService getOrdersService;
@@ -36,18 +47,22 @@ public class GetOrdersServiceTest {
         );
     }
 
-//    @Test
-//    // need IT for this
-//    void getOrderStatusesById_givenValidRequest_expectedSuccess () {
-//        OrderStatus mockOrderStatus = OrderStatus.builder().orderId("notInDB").orderStatus("ok").build();
-//        when(getOrdersService.getOrdersStatusesByOrderId(any(String.class))).thenReturn(mockOrderStatus);
-//        GetOrdersStatusesResponse actual = getOrdersController.getOrderStatusesByOrderId(GetOrdersStatusesRequest.builder().orderId("notInDB").build());
-//
-//        assertAll("Get order statuses by order id",
-//                () -> assertTrue(actual.getOrderId().equals("notInDB")),
-//                () -> assertTrue(actual.getOrderStatus().equals("ok")),
-//                () -> verify(getOrdersService, times(1)).getOrdersStatusesByOrderId(any(String.class))
-//        );
-//    }
+    @Test
+    // need IT for this
+    void getOrderStatusDetailById_givenValidRequest_expectedSuccess () {
+        lenient().doReturn(Optional.of(Shipment.builder().build())).when(shipmentsRepository).findByOrderId(anyString());
+        lenient().doReturn(Optional.of(Deliveryman.builder().id("0").build())).when(deliverymenRepository).findById(anyString());
+        lenient().doReturn(Optional.of(Order.builder().orderStatus("on-the-way").build())).when(ordersRepository).findById(anyString());
+        var actual = getOrdersService.getOrdersStatusDetailsByOrderId("notInDB");
+
+        assertAll("Get order statuses by order id",
+                () -> assertTrue(actual.getOrderId().equals("notInDB")),
+                () -> assertTrue(actual.getDeliverymanId().equals("no-deliveryman-assigned")),
+                () -> assertTrue(actual.getOrderStatus().equals("on-the-way")),
+                () -> verify(shipmentsRepository, times(1)).findByOrderId(any(String.class)),
+                () -> verify(deliverymenRepository, times(1)).findById(any(String.class)),
+                () -> verify(ordersRepository, times(1)).findById(any(String.class))
+        );
+    }
 
 }

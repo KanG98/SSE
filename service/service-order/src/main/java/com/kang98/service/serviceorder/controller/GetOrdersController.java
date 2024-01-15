@@ -1,6 +1,6 @@
 package com.kang98.service.serviceorder.controller;
 
-import com.kang98.data.dataorder.entity.OrderStatus;
+import com.kang98.data.dataorder.entity.OrderStatusDetail;
 import com.kang98.service.serviceorder.dto.GetOrdersResponse;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesRequest;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesResponse;
@@ -44,8 +44,8 @@ public class GetOrdersController {
     @ResponseStatus(HttpStatus.OK)
     public GetOrdersStatusesResponse getOrderStatusesByOrderId(@RequestBody @Valid GetOrdersStatusesRequest getOrdersStatusesRequest) {
         log.info("Get order statuses by order id called: " + getOrdersStatusesRequest.getOrderId() + " at " + System.currentTimeMillis());
-        OrderStatus orderStatus = getOrdersService.getOrdersStatusesByOrderId(getOrdersStatusesRequest.getOrderId());
-        GetOrdersStatusesResponse getOrdersStatusesResponse = modelMapper.map(orderStatus, GetOrdersStatusesResponse.class);
+        OrderStatusDetail orderStatusDetail = getOrdersService.getOrdersStatusDetailsByOrderId(getOrdersStatusesRequest.getOrderId());
+        GetOrdersStatusesResponse getOrdersStatusesResponse = modelMapper.map(orderStatusDetail, GetOrdersStatusesResponse.class);
         return getOrdersStatusesResponse;
     }
 }

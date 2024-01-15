@@ -1,28 +1,20 @@
 package com.kang98.service.serviceorder.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataorder.entity.OrderStatus;
-import com.kang98.service.serviceorder.dto.CreateOrdersRequest;
-import com.kang98.service.serviceorder.dto.GetOrdersResponse;
+import com.kang98.data.dataorder.entity.OrderStatusDetail;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesRequest;
 import com.kang98.service.serviceorder.dto.GetOrdersStatusesResponse;
-import com.kang98.service.serviceorder.service.CreateOrdersService;
 import com.kang98.service.serviceorder.service.GetOrdersService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.kang98.service.serviceorder.config.OrderServiceTestConfig.TEST_CREATE_ORDER_REQUEST;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,15 +44,15 @@ public class GetOrdersControllerTest {
     }
 
     @Test
-    void getOrderStatusesById_givenValidRequest_expectedSuccess () {
-        OrderStatus mockOrderStatus = OrderStatus.builder().orderId("notInDB").orderStatus("ok").build();
-        when(getOrdersService.getOrdersStatusesByOrderId(any(String.class))).thenReturn(mockOrderStatus);
+    void getOrderStatusDetailsById_givenValidRequest_expectedSuccess () {
+        OrderStatusDetail mockOrderStatusDetail = OrderStatusDetail.builder().orderId("notInDB").orderStatus("ok").build();
+        when(getOrdersService.getOrdersStatusDetailsByOrderId(any(String.class))).thenReturn(mockOrderStatusDetail);
         GetOrdersStatusesResponse actual = getOrdersController.getOrderStatusesByOrderId(GetOrdersStatusesRequest.builder().orderId("notInDB").build());
 
         assertAll("Get order statuses by order id",
                 () -> assertTrue(actual.getOrderId().equals("notInDB")),
                 () -> assertTrue(actual.getOrderStatus().equals("ok")),
-                () -> verify(getOrdersService, times(1)).getOrdersStatusesByOrderId(any(String.class))
+                () -> verify(getOrdersService, times(1)).getOrdersStatusDetailsByOrderId(any(String.class))
         );
     }
 
