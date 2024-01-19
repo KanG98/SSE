@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,8 +32,7 @@ public class CreateOrdersServiceIT {
 
         assertEquals(createdOrder.getCustomerId(), mockOrder.getCustomerId());
         Stream<Order> orders = getOrdersService.getAllOrders().stream();
-        assert orders.anyMatch(order -> order.getCustomerId().equals("IT"));
-
+        assert orders.anyMatch(order -> order.getCustomerId() == null ? false : order.getCustomerId().equals("IT"));
         ordersRepository.deleteByCustomerId(createdOrder.getCustomerId());
     }
 }
