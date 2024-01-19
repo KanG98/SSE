@@ -16,4 +16,8 @@ public class GetOrdersServiceIT {
         assert getOrdersService.getAllOrders().size() > 0;
     }
 
+    @Test
+    void getOrderStatusDetails_callMethod_expectedOrderStatusDetails() {
+        assert getOrdersService.getOrdersStatusDetailsByOrderId("1") != null;
+    }
 }
