@@ -2,7 +2,6 @@ package com.kang98.service.serviceorder.service;
 
 import com.kang98.data.dataorder.entity.Order;
 import com.kang98.data.dataorder.repository.OrdersRepository;
-import com.kang98.service.serviceorder.service.CreateOrdersService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,7 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CreateOrdersServiceTest {

@@ -3,12 +3,9 @@ package com.kang98.service.serviceorder.service;
 import com.kang98.data.datadeliveryman.entity.Deliveryman;
 import com.kang98.data.datadeliveryman.repository.DeliverymenRepository;
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataorder.entity.OrderStatusDetail;
 import com.kang98.data.dataorder.repository.OrdersRepository;
 import com.kang98.data.datashipment.entity.Shipment;
 import com.kang98.data.datashipment.repository.ShipmentsRepository;
-import com.kang98.service.serviceorder.dto.GetOrdersStatusesRequest;
-import com.kang98.service.serviceorder.dto.GetOrdersStatusesResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,9 +15,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class GetOrdersServiceTest {

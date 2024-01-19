@@ -2,7 +2,6 @@ package com.kang98.service.serviceorder.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kang98.data.dataorder.entity.Order;
-import com.kang98.data.dataproduct.entity.Product;
 import com.kang98.service.serviceorder.dto.CreateOrdersRequest;
 import com.kang98.service.serviceorder.service.CreateOrdersService;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,9 @@ import java.io.InputStream;
 import static com.kang98.service.serviceorder.config.OrderServiceTestConfig.TEST_CREATE_ORDER_REQUEST;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CreateOrdersControllerTest {
