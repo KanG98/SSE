@@ -36,6 +36,9 @@ dependencies {
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.3'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.3'
 
+    // kafka
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.1.1'
+
     // other packages
     implementation project(':data:auth')
 }
