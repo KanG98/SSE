@@ -8,25 +8,20 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.CompletableFuture;
-
 @Service
 public class CreateOrdersService {
 
-    @Autowired
     private KafkaTemplate<String,Object> template;
 
-    @Autowired
     private Producer producer;
 
-    private final OrdersRepository ordersRepository;
     @Autowired
-    CreateOrdersService(OrdersRepository ordersRepository) {
-        this.ordersRepository = ordersRepository;
+    public CreateOrdersService(Producer producer, KafkaTemplate<String,Object> template) {
+        this.producer = producer;
+        this.template = template;
     }
 
-    public Order createOrder(Order order) {
+    public void createOrder(Order order) {
         producer.sendEventsToTopic(template, "sse-create-orders-service", order);
-        return ordersRepository.save(order);
     }
 }

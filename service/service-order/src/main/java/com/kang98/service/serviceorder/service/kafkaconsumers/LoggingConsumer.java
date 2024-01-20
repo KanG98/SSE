@@ -1,4 +1,4 @@
-package com.kang98.service.serviceorder.service;
+package com.kang98.service.serviceorder.service.kafkaconsumers;
 
 import com.kang98.data.dataorder.entity.Order;
 import org.slf4j.Logger;
@@ -7,11 +7,11 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaMessageListener {
+public class LoggingConsumer {
 
-    Logger log = LoggerFactory.getLogger(KafkaMessageListener.class);
+    Logger log = LoggerFactory.getLogger(LoggingConsumer.class);
 
-    @KafkaListener(topics = "sse-create-orders-service", groupId = "sse-create-orders-service")
+    @KafkaListener(topics = "sse-create-orders-service", groupId = "log-order")
     public void consumeEvents(Order order) {
         log.info("consumer consume the events {} ", order.toString());
     }
@@ -25,4 +25,6 @@ public class KafkaMessageListener {
 //    public void consumeEvents3(Order order) {
 //        log.info("consumer3 consume the events {} ", order.toString());
 //    }
+
+
 }
