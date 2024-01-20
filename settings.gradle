@@ -21,4 +21,6 @@ include 'service:service-shipment'
 findProject(':service:service-shipment')?.name = 'service-shipment'
 include 'data:shipment'
 findProject(':data:shipment')?.name = 'shipment'
+include 'service:service-notification-email'
+findProject(':service:service-notification-email')?.name = 'service-notification-email'
 

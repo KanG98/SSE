@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -17,6 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @Document(collection = "orders")
 public class Order {
+
+    private final String id = UUID.randomUUID().toString();
 
     @Field("customer_id")
     private String customerId;
