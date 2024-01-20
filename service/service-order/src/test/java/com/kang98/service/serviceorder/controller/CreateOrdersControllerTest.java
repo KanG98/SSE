@@ -38,7 +38,6 @@ public class CreateOrdersControllerTest {
         InputStream requestJson = this.getClass().getResourceAsStream(TEST_CREATE_ORDER_REQUEST);
         var createOrdersRequest = new ObjectMapper().readValue(requestJson, CreateOrdersRequest.class);
 
-        when(createOrdersService.createOrder(any(Order.class))).thenReturn(Order.builder().build());
         when(modelMapper.map(createOrdersRequest, Order.class)).thenReturn(Order.builder().build());
 
         assertAll("Create order success",
