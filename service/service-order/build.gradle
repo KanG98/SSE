@@ -19,6 +19,11 @@ springBoot {
     mainClass = 'com.kang98.service.serviceorder.OrderServiceApplication'
 }
 
+ext {
+    set('springBootVersion', "3.2.0")
+    set('springCloudVersion', "2023.0.0")
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.1.5'
@@ -54,6 +59,9 @@ dependencies {
     testImplementation group: 'org.testcontainers', name: 'junit-jupiter', version: '1.19.3'
     testImplementation group: 'org.testcontainers', name: 'kafka', version: '1.19.3'
 
+    // eureka
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '4.1.0'
+
     // other packages
     implementation project(':foundation')
     implementation project(':data:auth')
@@ -64,3 +72,9 @@ dependencies {
     implementation project(':service:service-auth')
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    }
+}
