@@ -28,6 +28,11 @@ dependencies {
     // kafka
     implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.1.1'
 
+    // test containers
+    testImplementation group: 'org.testcontainers', name: 'testcontainers', version: '1.19.3'
+    testImplementation group: 'org.testcontainers', name: 'junit-jupiter', version: '1.19.3'
+    testImplementation group: 'org.testcontainers', name: 'kafka', version: '1.19.3'
+
     // other packages
     implementation project(':data:order')
 }
