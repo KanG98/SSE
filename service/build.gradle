@@ -15,6 +15,8 @@ dependencies {
     project('service-order')
     project('service-shipment')
     project('service-deliveryman')
+    project('service-notification-email')
+    project('service-discovery-server')
 }
 
 subprojects {
