@@ -19,3 +19,7 @@ Run service-discovery:
 Run service-order:
  - `cd service-order`
  - `mvn spring-boot:run`
+
+Run location-service:
+ - `chmod +x SSE-JS/services/location-service.sh`
+ - `./SSE-JS/services/location-service.sh`

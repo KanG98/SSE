@@ -11,7 +11,8 @@ const wss = new WebSocket.Server({ noServer: true });
 const redis = require('redis');
 
 let redisPort = 6379;  // Replace with your redis port
-let redisHost = "127.0.0.1";  // Replace with your redis host
+//let redisHost = "127.0.0.1";  // Replace with your redis host
+let redisHost = "my-redis";  // redis host in docker network
 
 // Create a Redis client
 const redisClient = redis.createClient({

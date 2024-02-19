@@ -1,0 +1,10 @@
+# Use Redis official image as second stage
+FROM redis:6.2-alpine
+
+# Expose the port that Redis runs on
+EXPOSE 6379
+
+# Define the command to run Redis server
+CMD [ "redis-server" ]
+
+# todo: need to move redis out of image
