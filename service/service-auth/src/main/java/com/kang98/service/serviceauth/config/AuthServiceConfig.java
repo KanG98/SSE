@@ -21,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@PropertySource("classpath:/local.properties")
+@PropertySource(value={"classpath:/local.properties", "file:/Users/kylexue/sse/secret"})
 @EntityScan("com.kang98.data.dataauth.entity")
 @ComponentScan({"com.kang98.foundation.security"})
 public class AuthServiceConfig {
