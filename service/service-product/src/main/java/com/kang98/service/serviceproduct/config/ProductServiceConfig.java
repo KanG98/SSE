@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:/local.properties")
+@PropertySource(value = {"classpath:/local.properties", "file:/Users/kylexue/sse/secret"})
 @ComponentScan({"com.kang98.data.dataauth.repository",
         "com.kang98.service.serviceproduct",
         "com.kang98.service.serviceorder"})
