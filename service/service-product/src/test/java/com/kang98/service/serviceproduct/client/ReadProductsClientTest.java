@@ -15,7 +15,7 @@ import java.net.URISyntaxException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ReadProductsClientTest {
+class ReadProductsClientTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -33,7 +33,7 @@ public class ReadProductsClientTest {
     private String password;
 
     @Test
-    public void testProductAllHttpPost_expectedSuccess() throws URISyntaxException {
+    void testProductAllHttpPost_expectedSuccess() throws URISyntaxException {
         final String baseUrl = "http://localhost:" + port + "/products/all";
 
         URI location = new URI(baseUrl);
@@ -49,7 +49,7 @@ public class ReadProductsClientTest {
     }
 
     @Test
-    public void testProductAllHttpPost_expectedForbidden() throws URISyntaxException {
+    void testProductAllHttpPost_expectedForbidden() throws URISyntaxException {
 
         final String baseUrl = "http://localhost:" + port + "/products/all";
 

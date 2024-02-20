@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class UpdateOrdersServiceTest {
+class UpdateOrdersServiceTest {
 
     @Mock
     private OrdersRepositoryImpl ordersRepositoryImpl;
@@ -24,10 +24,10 @@ public class UpdateOrdersServiceTest {
     private UpdateOrdersService updateOrdersService;
 
     @Test
-    public void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
+    void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
         when(ordersRepositoryImpl.updateOrderStatus(anyString(), anyString())).thenReturn(true);
         assertAll("Get all orders",
-                () -> assertEquals(updateOrdersService.updateOrderStatus("id", "status"), true),
+                () -> assertEquals(true, updateOrdersService.updateOrderStatus("id", "status")),
                 () -> verify(ordersRepositoryImpl, times(1)).updateOrderStatus(anyString(), anyString())
         );
     }

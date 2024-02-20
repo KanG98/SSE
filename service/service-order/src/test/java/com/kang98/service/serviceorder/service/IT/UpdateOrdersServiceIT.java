@@ -6,9 +6,10 @@ import com.kang98.service.serviceorder.service.UpdateOrdersService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class UpdateOrdersServiceIT {
+class UpdateOrdersServiceIT {
 
     private UpdateOrdersService updateOrdersService;
 
@@ -23,11 +24,11 @@ public class UpdateOrdersServiceIT {
     }
 
     @Test
-    public void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
+    void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
         String orderId = "32049231jf80afd5cf0bdd1e";
         Order order = ordersRepository.findById(orderId).get();
         boolean acknowledge = updateOrdersService.updateOrderStatus(orderId, "test");
-        assert acknowledge == true;
+        assertEquals(true, acknowledge);
         updateOrdersService.updateOrderStatus(orderId, order.getOrderStatus());
     }
 }

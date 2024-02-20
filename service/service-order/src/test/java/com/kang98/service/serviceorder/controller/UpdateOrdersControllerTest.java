@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UpdateOrdersControllerTest {
+class UpdateOrdersControllerTest {
 
     @InjectMocks
     private UpdateOrdersController updateOrdersController;
@@ -22,12 +22,12 @@ public class UpdateOrdersControllerTest {
     private UpdateOrdersService updateOrdersService;
 
     @Test
-    public void updateOrder_callMethod_expectedOrderUpdated() {
+    void updateOrder_callMethod_expectedOrderUpdated() {
         UpdateOrderStatusRequest mockRequest = UpdateOrderStatusRequest.builder().orderId("id").orderStatus("status").build();
         when(updateOrdersService.updateOrderStatus(anyString(), anyString())).thenReturn(true);
 
         assertAll("Update order",
-                () -> assertEquals(updateOrdersController.updateOrderStatus(mockRequest).isDbAcknowledgement(), true),
+                () -> assertEquals(true, updateOrdersController.updateOrderStatus(mockRequest).isDbAcknowledgement()),
                 () -> verify(updateOrdersService, times(1)).updateOrderStatus(anyString(), anyString())
         );
     }

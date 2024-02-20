@@ -22,10 +22,11 @@ import java.io.InputStream;
 import static com.kang98.service.serviceproduct.config.ProductServiceTestConfig.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes={ProductServiceTestConfig.class})
-public class ReadProductsControllerIT {
+class ReadProductsControllerIT {
 
     @Autowired
     private ProductsRepository productsRepository;
@@ -40,7 +41,7 @@ public class ReadProductsControllerIT {
     void getAllProducts_callMethod_expectedReadProductsResponse() throws IOException {
         var actual = readProductsController.getAllProducts();
 
-        assert actual.getProductList().size() > 0;
+        assertEquals(true, actual.getProductList().size() > 0);
     }
 
     @Test

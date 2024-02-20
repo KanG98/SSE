@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
-public class UpdateOrdersControllerIT {
+class UpdateOrdersControllerIT {
 
     private UpdateOrdersController updateOrdersController;
 
@@ -22,7 +24,7 @@ public class UpdateOrdersControllerIT {
     }
 
     @Test
-    public void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
+    void updateOrderStatus_givenOrderIdAndStatus_expectedSuccess() {
         String orderId = "32049231jf80afd5cf0bdd1e";
         String orderStatus = "fd";
         Order order = ordersRepository.findById(orderId).get();
@@ -31,6 +33,7 @@ public class UpdateOrdersControllerIT {
                 .orderStatus(orderStatus)
                 .build();
         boolean acknowledge = updateOrdersController.updateOrderStatus(updateOrderStatusRequest).isDbAcknowledgement();
+        assertEquals(true, acknowledge);
         assert acknowledge == true;
 
         // reset order status

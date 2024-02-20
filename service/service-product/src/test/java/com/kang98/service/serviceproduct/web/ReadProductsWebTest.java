@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ProductServiceTestConfig.class})
 @WebMvcTest
-public class ReadProductsWebTest {
+class ReadProductsWebTest {
 
     @Autowired
     private MockMvc mockMvc;

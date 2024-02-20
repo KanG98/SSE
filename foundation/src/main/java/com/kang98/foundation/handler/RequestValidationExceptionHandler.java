@@ -12,9 +12,7 @@ public class RequestValidationExceptionHandler {
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity handleValidationExceptionHandler(MethodArgumentNotValidException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST.value())
-                .body(ex.getBody());
+    public ResponseEntity<MethodArgumentNotValidException> handleValidationExceptionHandler(MethodArgumentNotValidException ex) {
+        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
     }
 }
