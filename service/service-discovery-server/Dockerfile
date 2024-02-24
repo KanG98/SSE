@@ -14,9 +14,9 @@ COPY ./src ./src
 # Build the application
 RUN gradle build -x test
 
-# Use OpenJDK for runtime
-# https://hub.docker.com/_/openjdk
-FROM openjdk:17-jdk-slim
+# Use eclipse-temurin for runtime
+# https://hub.docker.com/_/eclipse-temurin
+FROM eclipse-temurin:17.0.10_7-jre-jammyk
 
 # Set the working directory in the image to /app
 WORKDIR /app

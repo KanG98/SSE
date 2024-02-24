@@ -23,3 +23,8 @@ Run service-order:
 Run location-service:
  - `chmod +x SSE-JS/services/location-service.sh`
  - `./SSE-JS/services/location-service.sh`
+
+Run all services in docker:
+ - `docker pull yankang198/service-discovery-server:latest`
+ - `docker run --network my-network --name discovery-server -p 8761:8761 yankang198/service-discovery-server
+   ` 
