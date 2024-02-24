@@ -26,7 +26,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the jar to our app directory
-COPY --from=build /app/target/*.jar ./service-discovery-server.jar
+COPY --from=build /app/target/*.jar ./service/service-discovery-server.jar
 
 # Run the application
 CMD ["java", "-jar", "./service-discovery-server.jar"]
