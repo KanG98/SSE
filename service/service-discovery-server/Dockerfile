@@ -1,6 +1,6 @@
 # Use the official Gradle image to create a build artifact.
 # https://hub.docker.com/_/gradle
-FROM gradle:8.6.0-jdk17 AS build
+FROM gradle:gradle:8.6.0-jdk17 AS build
 
 # Set the working directory in the image to /app
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN gradle build -x test
 
 # Use eclipse-temurin for runtime
 # https://hub.docker.com/_/eclipse-temurin
-FROM eclipse-temurin:latest
+FROM eclipse-temurin:17.0.10_7-jre-jammy
 
 # Set the working directory in the image to /app
 WORKDIR /app
