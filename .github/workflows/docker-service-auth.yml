@@ -24,8 +24,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: docker buildx build --platform linux/arm64 -f ./service/service-auth/Dockerfile -t yankang198/service-auth:latest .
-
-      - name: Push Docker image to DockerHub
-        run: docker push yankang198/service-auth:latest
+      - name: Build Docker image and push to DockerHub
+        run: docker buildx build --platform linux/arm64 -f ./service/service-auth/Dockerfile -t yankang198/service-auth:latest . --push
