@@ -24,5 +24,7 @@ WORKDIR /app
 # Copy the jar to our app directory
 COPY --from=build /app/build/libs/*.jar ./service-discovery-server.jar
 
+EXPOSE 8761
+
 # Run the application
 CMD ["java", "-jar", "./service-discovery-server.jar"]
