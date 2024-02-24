@@ -23,6 +23,6 @@ jobs:
       - name: Docker Service Discovery Server - Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./service-discovery-server
+          context: ./service/service-discovery-server
           push: true
           tags: yankang198/service-discovery-server:latest
