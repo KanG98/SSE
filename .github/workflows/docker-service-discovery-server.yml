@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: cd service/service-discovery-server/ && docker buildx build --platform linux/arm64 -t yankang198/service-discovery . --push
+        run: cd service/service-discovery-server/ && docker buildx build --platform linux/arm64/v3 -t yankang198/service-discovery . --push
