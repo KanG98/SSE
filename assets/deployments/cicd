@@ -1,0 +1,2 @@
+git push -> main test -> deploy to docker
+-> webhook to cd-service -> pull image and rerun container
