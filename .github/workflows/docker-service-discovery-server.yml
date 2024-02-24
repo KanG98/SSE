@@ -26,3 +26,4 @@ jobs:
           context: ./service/service-discovery-server
           push: true
           tags: yankang198/service-discovery-server:latest
+          platforms: linux/arm64
