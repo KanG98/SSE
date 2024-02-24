@@ -25,4 +25,4 @@ jobs:
         with:
           context: ./service-discovery-server
           push: true
-          tags: your-dockerhub-username/service-discovery-server:latest
+          tags: yankang198/service-discovery-server:latest
