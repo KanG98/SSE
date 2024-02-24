@@ -23,7 +23,8 @@ jobs:
       - name: Docker Service Discovery Server - Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./service/service-auth
+          context: .
           push: true
+          dockerfile: ./service/service-auth/Dockerfile
           tags: yankang198/service-auth:latest
           platforms: linux/arm64
