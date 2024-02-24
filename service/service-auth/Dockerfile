@@ -15,7 +15,7 @@ COPY ./data/auth ./data/auth
 
 COPY ./foundation ./foundation
 
-COPY ./settings.gradle ./settings.gradle
+COPY ./service/service-auth/settings.gradle ./settings.gradle
 
 # Build the application
 RUN gradle build -x test
