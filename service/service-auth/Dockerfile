@@ -1,6 +1,6 @@
 # Use the official Gradle image to create a build artifact.
 # https://hub.docker.com/_/gradle
-FROM gradle:7.4.2-jdk17 AS build
+FROM gradle:8.6.0-jdk17 AS build
 
 # Set the working directory in the image to /app
 WORKDIR /app
