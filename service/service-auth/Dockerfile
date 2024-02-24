@@ -1,0 +1,38 @@
+# Use the official Gradle image to create a build artifact.
+# https://hub.docker.com/_/gradle
+FROM gradle:7.4.2-jdk17 AS build
+
+# Set the working directory in the image to /app
+WORKDIR /app
+
+# Copy the build.gradle file to our app directory
+COPY ./service/service-auth/build.gradle ./build.gradle
+
+# Copy the rest of the application
+COPY ./service/service-auth/src ./src
+
+COPY ./data/auth ./data/auth
+
+COPY ./foundation ./foundation
+
+COPY ./settings.gradle ./settings.gradle
+
+# Build the application
+RUN gradle build -x test
+
+# Use eclipse-temurin for runtime
+# https://hub.docker.com/_/eclipse-temurin
+FROM eclipse-temurin:17.0.10_7-jre-jammy
+
+# Set the working directory in the image to /app
+WORKDIR /app
+
+# Copy the jar to our app directory
+COPY --from=build /app/build/libs/*.jar ./service-auth.jar
+
+# Copy auth data to the volume
+
+EXPOSE 50231
+
+# Run the application
+CMD ["java", "-jar", "./service-auth.jar"]
