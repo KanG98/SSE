@@ -1,8 +1,11 @@
 name: Docker - Auth Server
 
 on:
-  push:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Main - Testing"]
+    types:
+      - completed
+      - success
 
 jobs:
   build:
