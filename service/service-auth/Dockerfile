@@ -18,7 +18,7 @@ COPY ./foundation ./foundation
 COPY ./service/service-auth/settings.gradle ./settings.gradle
 
 # Build the application
-RUN gradle build -x test
+RUN gradle clean build -x test
 
 # Use eclipse-temurin for runtime
 # https://hub.docker.com/_/eclipse-temurin
